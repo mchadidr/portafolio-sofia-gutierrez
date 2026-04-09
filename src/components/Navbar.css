@@ -1,0 +1,113 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--navbar-height);
+}
+
+.navbar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Wordmark ── */
+.navbar__wordmark {
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar__wordmark:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+/* ── Vertical separator ── */
+.navbar__separator {
+  display: block;
+  width: 1px;
+  height: 1.25rem;
+  background-color: var(--color-border);
+  margin: 0 var(--spacing-md);
+  flex-shrink: 0;
+}
+
+/* ── Nav links ── */
+.navbar__left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  list-style: none;
+}
+
+.navbar__link {
+  font-family: var(--font-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: var(--color-text-primary);
+}
+
+/* ── CTA button ── */
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__cta {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-button-text);
+  background-color: var(--color-button-bg);
+  text-decoration: none;
+  padding: 0.55rem 1.25rem;
+  border: 1px solid var(--color-button-bg);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar__cta:hover {
+  background-color: transparent;
+  color: var(--color-button-bg);
+}
+
+/* ── Responsive: hide links on small screens ── */
+@media (max-width: 640px) {
+  .navbar__inner {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__separator {
+    display: none;
+  }
+}
