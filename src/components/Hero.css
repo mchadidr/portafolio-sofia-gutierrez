@@ -1,0 +1,156 @@
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  gap: var(--spacing-md);
+  /* Aim to fill the initial viewport below the navbar */
+  min-height: calc(100vh - var(--navbar-height));
+  box-sizing: border-box;
+}
+
+/* ── Section label ── */
+.hero__label {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Image grid ── */
+.hero__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem;
+  /* Limit max height so it doesn't overflow the viewport */
+  max-height: calc(100vh - var(--navbar-height) - 180px);
+  min-height: 400px;
+}
+
+/* Shared image block styles */
+.hero__image {
+  background-color: var(--color-image-placeholder);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--spacing-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* Primary image spans both rows on the left */
+.hero__image--primary {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+/* Secondary images stack on the right column */
+.hero__image--secondary-top {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.hero__image--secondary-bottom {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+/* Image placeholder label */
+.hero__image-label {
+  font-family: var(--font-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Tagline copy ── */
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: var(--spacing-sm);
+}
+
+.hero__title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+.hero__subtitle {
+  font-family: var(--font-secondary);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  max-width: 40ch;
+}
+
+/* ── Responsive ── */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .hero {
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+  }
+
+  .hero__grid {
+    max-height: 60vh;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-lg);
+    min-height: unset;
+    gap: var(--spacing-sm);
+  }
+
+  /* Stack all images vertically on mobile */
+  .hero__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 260px 180px 180px;
+    max-height: unset;
+  }
+
+  .hero__image--primary {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .hero__image--secondary-top {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .hero__image--secondary-bottom {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .hero__title {
+    font-size: 1.5rem;
+  }
+}
