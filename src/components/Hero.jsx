@@ -10,13 +10,8 @@ function Hero() {
       {/* ── 3-image grid ── */}
       <div className="hero__grid">
 
-        {/*
-          IMAGE PLACEHOLDER 1 — Large featured image (left column, full height)
-          Replace <div> with <img src="..." alt="..." /> when asset is ready.
-          Recommended: a wide-format product photograph or lifestyle scene.
-        */}
-        <div className="hero__image hero__image--primary" aria-hidden="true">
-          <span className="hero__image-label">Image 01</span>
+        <div className="hero__image hero__image--primary">
+          <img src="/images/1.png" alt="Featured work — image 1" />
         </div>
 
         {/*

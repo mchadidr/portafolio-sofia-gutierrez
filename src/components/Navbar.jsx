@@ -6,9 +6,8 @@ function Navbar() {
       <nav className="navbar__inner" aria-label="Main navigation">
         {/* ── Left side: wordmark + separator + nav links ── */}
         <div className="navbar__left">
-          <a href="#" className="navbar__wordmark" aria-label="Sofia Gutierrez home">
-            {/* WORDMARK — replace text with an SVG logo or styled typeface when final branding is ready */}
-            Sofia Gutierrez
+          <a href="#" className="navbar__wordmark" aria-label="SGB Atelier home">
+            SGB Atelier
           </a>
 
           <span className="navbar__separator" aria-hidden="true" />
