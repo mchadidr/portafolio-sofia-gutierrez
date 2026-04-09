@@ -26,9 +26,12 @@
   --color-button-text: #FFF6EA;
   --color-image-placeholder: #e8ddd0;
 
-  /* Typography — replace with final fonts when selected */
-  --font-primary: Georgia, 'Times New Roman', serif;    /* PLACEHOLDER — heading / wordmark font */
-  --font-secondary: system-ui, -apple-system, sans-serif; /* PLACEHOLDER — body / nav font */
+  /* Typography — PLACEHOLDER fonts (Cormorant Garamond + Inter)
+     Replace with final typeface when selected:
+       1. Swap the Google Fonts <link> in index.html.
+       2. Update the two variables below. */
+  --font-primary: 'Cormorant Garamond', Georgia, serif;     /* headings, wordmark */
+  --font-secondary: 'Inter', system-ui, -apple-system, sans-serif; /* body, nav */
 
   /* Spacing scale */
   --spacing-xs: 0.5rem;
