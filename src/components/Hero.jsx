@@ -6,13 +6,23 @@ function Hero() {
     return `${import.meta.env.BASE_URL}images/${imageNumber}.png`
   })
 
+  const imageAnchors = {
+    2: 'about',
+    4: 'projects',
+    16: 'contact'
+  }
+
   return (
-    <section className="hero" id="projects" aria-label="Featured work">
-      {imagePaths.map((imageSrc, index) => (
-        <div className="hero__image" key={imageSrc}>
-          <img src={imageSrc} alt={`Featured work ${index + 1}`} loading="lazy" />
-        </div>
-      ))}
+    <section className="hero" aria-label="Featured work">
+      {imagePaths.map((imageSrc, index) => {
+        const imageNumber = index + 1
+
+        return (
+          <div className="hero__image" id={imageAnchors[imageNumber]} key={imageSrc}>
+            <img src={imageSrc} alt={`Featured work ${imageNumber}`} loading="lazy" />
+          </div>
+        )
+      })}
     </section>
   )
 }

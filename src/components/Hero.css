@@ -5,6 +5,7 @@
 
 .hero__image {
   line-height: 0;
+  scroll-margin-top: var(--navbar-height);
 }
 
 .hero__image img {
