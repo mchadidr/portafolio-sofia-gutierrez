@@ -1,22 +1,14 @@
 .hero {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   padding: 0;
   width: 100%;
-  height: calc(100vh - var(--navbar-height));
 }
 
 .hero__image {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
+  line-height: 0;
 }
 
 .hero__image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
+  height: auto;
+  display: block;
 }
