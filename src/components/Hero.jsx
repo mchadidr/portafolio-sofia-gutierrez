@@ -4,18 +4,14 @@ import HERO_TEXT_POSITIONS, { toPercentPosition } from './heroTextPositions.jsx'
 
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 1
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
-const SCENE5_TO_6_TRANSITION_DISTANCE_VIEWPORTS = 1
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
-const SCENE5_TO_6_START_DEADZONE_PX = 0
 
 function Hero() {
   const [firstTransitionProgress, setFirstTransitionProgress] = useState(0)
   const [horizontalTransitionProgress, setHorizontalTransitionProgress] = useState(0)
-  const [scene5To6TransitionProgress, setScene5To6TransitionProgress] = useState(0)
 
   const firstTransitionRef = useRef(null)
   const horizontalTransitionRef = useRef(null)
-  const scene5To6TransitionRef = useRef(null)
 
   const imagePaths = Array.from({ length: 17 }, (_, index) => {
     const imageNumber = index + 1
@@ -74,15 +70,8 @@ function Hero() {
         HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS
       )
 
-      const nextScene5To6Progress = calculateProgress(
-        scene5To6TransitionRef.current,
-        SCENE5_TO_6_TRANSITION_DISTANCE_VIEWPORTS,
-        SCENE5_TO_6_START_DEADZONE_PX
-      )
-
       setStableProgress(setFirstTransitionProgress, nextFirstProgress)
       setStableProgress(setHorizontalTransitionProgress, nextHorizontalProgress)
-      setStableProgress(setScene5To6TransitionProgress, nextScene5To6Progress)
     }
 
     const handleScroll = () => {
@@ -278,9 +267,14 @@ function Hero() {
     const imageSrc = imagePaths[imageNumber - 1]
     const anchorId = imageAnchors[imageNumber]
     const isVisibleOverlay = imageNumber === 1 || imageNumber === 2 || imageNumber === 3
+    const isCompositionFixScene = imageNumber === 2 || imageNumber === 3
 
     return (
-      <div className="hero__image" id={anchorId} key={`scene-${imageNumber}`}>
+      <div
+        className={`hero__image${isCompositionFixScene ? ' hero__image--composition-fix' : ''}`}
+        id={anchorId}
+        key={`scene-${imageNumber}`}
+      >
         <img
           className="hero__image-layer"
           src={imageSrc}
@@ -341,26 +335,7 @@ function Hero() {
         </div>
       </section>
 
-      <section className="hero__paper-transition" ref={scene5To6TransitionRef} aria-label="Scene 5 to 6 paper transition">
-        <div className="hero__paper-transition-stage">
-          <div className="hero__scene-layer hero__scene-layer--under">
-            {renderScene(6)}
-          </div>
-
-          {/*
-            Scene 5->6 is handled only in this block to avoid duplicate scene rendering.
-            Scene 5 slides down while Scene 6 is revealed underneath.
-          */}
-          <div
-            className="hero__scene-layer hero__scene-layer--top"
-            style={{ transform: `translate3d(0, ${scene5To6TransitionProgress * 100}vh, 0)` }}
-          >
-            {renderScene(5)}
-          </div>
-        </div>
-      </section>
-
-      {Array.from({ length: 11 }, (_, index) => index + 7).map((imageNumber) => renderScene(imageNumber))}
+      {Array.from({ length: 13 }, (_, index) => index + 5).map((imageNumber) => renderScene(imageNumber))}
     </section>
   )
 }

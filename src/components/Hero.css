@@ -61,7 +61,7 @@
   position: relative;
   line-height: 0;
   scroll-margin-top: var(--navbar-height);
-  width: min(100%, 1600px);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -70,6 +70,23 @@
   height: auto;
   display: block;
   pointer-events: none;
+}
+
+/*
+  The previous fix constrained the sticky stage/wrapper that also hosts overlays,
+  which clipped text along with the composition. Keep wrapper sizing broad and
+  target only Scene 2/3 image rendering so overlays remain independent.
+*/
+.hero__image--composition-fix .hero__image-layer {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.hero__image--composition-fix {
+  /* Keep scene 2/3 composition mapped to full transition stage without clipping overlay text wrappers. */
+  height: 100vh;
 }
 
 .hero__overlay-container {
