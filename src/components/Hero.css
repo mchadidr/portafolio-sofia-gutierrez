@@ -1,14 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Arimo:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Arimo:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@500;700&family=Satisfy&display=swap');
 
 .hero {
+  position: relative;
+  isolation: isolate;
   width: 100%;
-  --hero-paper-transition-distance: 100vh;
+  --hero-paper-transition-distance: 300vh;
   --hero-horizontal-transition-distance: 100vh;
+}
+
+.hero__progress-counter {
+  position: fixed;
+  top: calc(var(--navbar-height, 0px) + 12px);
+  left: 12px;
+  z-index: 2147483647;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  max-width: min(92vw, 360px);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.hero__progress-counter-line {
+  margin: 0;
 }
 
 .hero__horizontal-transition {
   position: relative;
   height: calc(100vh + var(--hero-horizontal-transition-distance));
+}
+
+.hero__horizontal-transition--scene3 {
+  /* Overlap by 1px to prevent a sub-pixel seam between scenes 2 and 3. */
+  margin-top: -50px;
 }
 
 .hero__horizontal-transition-stage {
@@ -30,9 +62,23 @@
   z-index: 1;
 }
 
+.hero__scene-layer--background {
+  z-index: 0;
+}
+
 .hero__scene-layer--top {
   z-index: 2;
   will-change: transform;
+}
+
+.hero__scene-layer--first-top {
+  transform-origin: top center;
+}
+
+.hero__scene-layer--first-top .hero__image {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: none;
 }
 
 .hero__scene-layer--horizontal-current {
@@ -54,7 +100,25 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.hero__first-transition-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero__shared-composition-background {
+  width: min(95vw, 1600px);
+  height: 95vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  pointer-events: none;
 }
 
 .hero__image {
@@ -65,6 +129,16 @@
   margin: 0 auto;
 }
 
+.hero__image--svg-transparent {
+  /* Preserve SVG transparency by ensuring no opaque backgrounds interfere. */
+  background: transparent;
+}
+
+.hero__image--svg-transparent .hero__image-layer {
+  mix-blend-mode: normal;
+  background: transparent;
+}
+
 .hero__image-layer {
   width: 100%;
   height: auto;
@@ -72,21 +146,47 @@
   pointer-events: none;
 }
 
-/*
-  The previous fix constrained the sticky stage/wrapper that also hosts overlays,
-  which clipped text along with the composition. Keep wrapper sizing broad and
-  target only Scene 2/3 image rendering so overlays remain independent.
-*/
-.hero__image--composition-fix .hero__image-layer {
+.hero__image--composition-fix {
+  /*
+    Lock scenes 2/3 to the original 1600x900 composition ratio so text coordinates
+    remain anchored to the same visual frame across screen sizes.
+  */
+  width: min(95vw, calc(95vh * (1600 / 900)), 1600px);
+  aspect-ratio: 1600 / 900;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+  isolation: isolate;
+  container-type: size;
+  margin: 0 auto;
+}
+
+.hero__scene-fixed-background {
+  /* Fixed layer: this stays pinned to the viewport while the foreground scenes move over it. */
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--scene-fixed-background);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.hero__image-layer--composition-foreground {
+  /* Moving layer: transparent scene foreground aligned with the shared fixed backdrop. */
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center top;
+  mix-blend-mode: normal;
+  filter: none;
 }
 
-.hero__image--composition-fix {
-  /* Keep scene 2/3 composition mapped to full transition stage without clipping overlay text wrappers. */
-  height: 100vh;
+.hero__image--composition-fix .hero__overlay-container {
+  z-index: 2;
 }
 
 .hero__overlay-container {
@@ -138,7 +238,7 @@
 
 .hero__overlay-role {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.4rem, 2.9vw, 2.65rem);
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
   font-weight: 700;
   color: #f2dfc7;
 }
@@ -160,6 +260,19 @@
   pointer-events: none;
 }
 
+/*
+  Scene 3 typography scales with the composition container (not viewport width),
+  so labels keep their relative position and spacing inside the hero frame.
+*/
+.hero__overlay-content--education .hero__section-title {
+  font-size: clamp(1rem, 1.95cqw, 1.8rem);
+}
+
+.hero__overlay-content--education .hero__body-label,
+.hero__overlay-content--education .hero__body-text {
+  font-size: clamp(0.74rem, 1.05cqw, 1.25rem);
+}
+
 .hero__about-title {
   position: absolute;
   margin: 0;
@@ -178,7 +291,11 @@
 }
 
 .hero__about-title-italic {
-  font-style: italic;
+  font-family: 'Satisfy', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.18em;
+  letter-spacing: 0;
 }
 
 .hero__about-line {

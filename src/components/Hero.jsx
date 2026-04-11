@@ -5,18 +5,39 @@ import HERO_TEXT_POSITIONS, { toPercentPosition } from './heroTextPositions.jsx'
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 1
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
+const FIRST_TRANSITION_INITIAL_SCALE = 0.75
+const FIRST_TRANSITION_PEAK_SCALE = 0.98
+const FIRST_TRANSITION_SCALE_PHASE_END = 0.32
+const FIRST_TRANSITION_UNDER_REVEAL_START = 0.22
+const FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END = 0.42
+const FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH = 7
+const SCENE15_TO_16_START_DEADZONE_RATIO = 0.25
+const SCENE15_TO_16_ENTRY_OFFSET_VH = 110
+const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 3
 
 function Hero() {
   const [firstTransitionProgress, setFirstTransitionProgress] = useState(0)
   const [horizontalTransitionProgress, setHorizontalTransitionProgress] = useState(0)
+  const [horizontalTransition8To9Progress, setHorizontalTransition8To9Progress] = useState(0)
+  const [scene15To16TransitionProgress, setScene15To16TransitionProgress] = useState(0)
+  const [debugScrollY, setDebugScrollY] = useState(0)
 
   const firstTransitionRef = useRef(null)
   const horizontalTransitionRef = useRef(null)
+  const horizontalTransition8To9Ref = useRef(null)
+  const scene15To16TransitionRef = useRef(null)
 
   const imagePaths = Array.from({ length: 17 }, (_, index) => {
     const imageNumber = index + 1
     return `${import.meta.env.BASE_URL}images/${imageNumber}.png`
   })
+
+  const firstTransitionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
+  const sharedCompositionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
+  const sharedBackgroundDebugMode = new URLSearchParams(window.location.search).get('heroBackground') === 'red'
+  const sharedBackgroundStyle = sharedBackgroundDebugMode
+    ? { backgroundColor: '#d71920', backgroundImage: 'none' }
+    : { backgroundImage: `url(${sharedCompositionBackgroundSrc})` }
 
   const imageAnchors = {
     2: 'about',
@@ -70,8 +91,23 @@ function Hero() {
         HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS
       )
 
+      const nextHorizontal8To9Progress = calculateProgress(
+        horizontalTransition8To9Ref.current,
+        HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS
+      )
+
+      const nextScene15To16Progress = calculateProgress(
+        scene15To16TransitionRef.current,
+        SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS,
+        // Hold scene 15 longer before scene 16 starts entering.
+        window.innerHeight * SCENE15_TO_16_START_DEADZONE_RATIO
+      )
+
       setStableProgress(setFirstTransitionProgress, nextFirstProgress)
       setStableProgress(setHorizontalTransitionProgress, nextHorizontalProgress)
+      setStableProgress(setHorizontalTransition8To9Progress, nextHorizontal8To9Progress)
+      setStableProgress(setScene15To16TransitionProgress, nextScene15To16Progress)
+      setDebugScrollY(Math.round(window.scrollY || 0))
     }
 
     const handleScroll = () => {
@@ -110,23 +146,6 @@ function Hero() {
           >
             2 0 2 6
           </h1>
-
-          <p
-            className="hero__overlay-role"
-            style={toPercentPosition(HERO_TEXT_POSITIONS.role)}
-          >
-            Industrial designer
-          </p>
-
-          <p
-            className="hero__overlay-name"
-            style={{
-              ...toPercentPosition(HERO_TEXT_POSITIONS.overlay1Name),
-              fontFamily: HERO_TEXT_POSITIONS.overlay1Name.fontFamily,
-            }}
-          >
-            I.D Sofía Gutiérrez Bohórquez.
-          </p>
         </div>
       )
     }
@@ -248,14 +267,14 @@ function Hero() {
           <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillRight2)}>Fast thinking</p>
           <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillRight3)}>Active listening</p>
 
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software1)}>Procreate</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software2)}>Keyshot</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software3)}>SolidWorks</p>
-          <p className="hero__software-text hero__software-text--italic" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software4)}>CSWA</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software5)}>Canva</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software6)}>Rhinoceros 3D</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software7)}>Office 365</p>
-          <p className="hero__software-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software8)}>Adobe Illustrator</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software1), display: 'none' }}>Procreate</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software2), display: 'none' }}>Keyshot</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software3), display: 'none' }}>SolidWorks</p>
+          <p className="hero__software-text hero__software-text--italic" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software4), display: 'none' }}>CSWA</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software5), display: 'none' }}>Canva</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software6), display: 'none' }}>Rhinoceros 3D</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software7), display: 'none' }}>Office 365</p>
+          <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software8), display: 'none' }}>Adobe Illustrator</p>
         </div>
       )
     }
@@ -264,22 +283,35 @@ function Hero() {
   }
 
   const renderScene = (imageNumber) => {
-    const imageSrc = imagePaths[imageNumber - 1]
+    const shouldUseSvgImage = imageNumber === 1 || (imageNumber >= 10 && imageNumber <= 16)
+    const imageSrc = shouldUseSvgImage
+      ? `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
+      : imagePaths[imageNumber - 1]
+    const compositionForegroundSvgSrc = `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
     const anchorId = imageAnchors[imageNumber]
     const isVisibleOverlay = imageNumber === 1 || imageNumber === 2 || imageNumber === 3
     const isCompositionFixScene = imageNumber === 2 || imageNumber === 3
+    const isFirstScene = imageNumber === 1
+    const sceneForegroundSrc = isCompositionFixScene ? compositionForegroundSvgSrc : imageSrc
 
     return (
       <div
-        className={`hero__image${isCompositionFixScene ? ' hero__image--composition-fix' : ''}`}
+        className={`hero__image${isFirstScene ? ' hero__image--svg-transparent' : ''}${isCompositionFixScene ? ' hero__image--composition-fix' : ''}`}
         id={anchorId}
         key={`scene-${imageNumber}`}
       >
         <img
-          className="hero__image-layer"
-          src={imageSrc}
+          className={`hero__image-layer${isCompositionFixScene ? ' hero__image-layer--composition-foreground' : ''}`}
+          src={sceneForegroundSrc}
           alt={`Featured work ${imageNumber}`}
           loading="lazy"
+          onError={(event) => {
+            if (isCompositionFixScene && event.currentTarget.src !== imageSrc) {
+              // Temporary fallback until scene-specific foreground SVG files are available.
+              event.currentTarget.onerror = null
+              event.currentTarget.src = imageSrc
+            }
+          }}
         />
 
         <div
@@ -294,28 +326,98 @@ function Hero() {
     )
   }
 
+  const firstScalePhaseProgress = Math.min(
+    firstTransitionProgress / Math.max(FIRST_TRANSITION_SCALE_PHASE_END, 0.0001),
+    1
+  )
+
+  const firstDropPhaseProgress = firstTransitionProgress <= FIRST_TRANSITION_SCALE_PHASE_END
+    ? 0
+    : (firstTransitionProgress - FIRST_TRANSITION_SCALE_PHASE_END) / Math.max(1 - FIRST_TRANSITION_SCALE_PHASE_END, 0.0001)
+
+  const firstScenePanelScale =
+    FIRST_TRANSITION_INITIAL_SCALE +
+    (FIRST_TRANSITION_PEAK_SCALE - FIRST_TRANSITION_INITIAL_SCALE) * firstScalePhaseProgress
+
+  const firstScenePanelDropVh = firstDropPhaseProgress * 100
+  const hasFirstTransitionStarted = firstTransitionProgress >= FIRST_TRANSITION_UNDER_REVEAL_START
+  const shouldShowFirstTransitionBackground =
+    firstTransitionProgress < FIRST_TRANSITION_UNDER_REVEAL_START
+  // Delay + smooth reveal for scene 2: it stays lower until reveal starts, then settles into place.
+  const underRevealProgress = firstTransitionProgress <= FIRST_TRANSITION_UNDER_REVEAL_START
+    ? 0
+    : Math.min(
+      (firstTransitionProgress - FIRST_TRANSITION_UNDER_REVEAL_START) /
+      Math.max(FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END - FIRST_TRANSITION_UNDER_REVEAL_START, 0.0001),
+      1
+    )
+  const underSceneOffsetVh = FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH * (1 - underRevealProgress)
+  const firstTransitionProgressPercent = Math.round(firstTransitionProgress * 100)
+  const horizontalTransitionProgressPercent = Math.round(horizontalTransitionProgress * 100)
+  const horizontalTransition8To9ProgressPercent = Math.round(horizontalTransition8To9Progress * 100)
+  const scene15To16TransitionProgressPercent = Math.round(scene15To16TransitionProgress * 100)
+
   return (
     <section className="hero" aria-label="Hero composition">
+      {/* Shared backdrop: one fixed background for the full hero so scenes 2+ move over the same stationary layer. */}
+      <div className="hero__scene-fixed-background" aria-hidden="true" style={sharedBackgroundStyle} />
+
+      {/* Temporary debug counters for tuning hero transition timing. */}
+      <div className="hero__progress-counter" aria-live="polite">
+        <p className="hero__progress-counter-line">y: {debugScrollY}px</p>
+        <p className="hero__progress-counter-line">1 to 2: {firstTransitionProgressPercent}%</p>
+        <p className="hero__progress-counter-line">3 to 4: {horizontalTransitionProgressPercent}%</p>
+        <p className="hero__progress-counter-line">8 to 9: {horizontalTransition8To9ProgressPercent}%</p>
+        <p className="hero__progress-counter-line">15 to 16: {scene15To16TransitionProgressPercent}%</p>
+      </div>
+
       <section className="hero__paper-transition" ref={firstTransitionRef} aria-label="First scene transition">
         <div className="hero__paper-transition-stage">
-          <div className="hero__scene-layer hero__scene-layer--under">
+          <div
+            className="hero__scene-layer hero__scene-layer--background"
+            aria-hidden="true"
+          >
+            <div
+              className="hero__first-transition-background"
+              /* Background base for the first transition panel stack. */
+              style={{
+                backgroundImage: `url(${firstTransitionBackgroundSrc})`,
+                opacity: shouldShowFirstTransitionBackground ? 1 : 0,
+              }}
+            />
+          </div>
+
+          {/*
+            Scene 2 is always mounted directly beneath scene 1 in the same wrapper.
+            This ensures transparent SVG regions in scene 1 reveal scene 2, not page background.
+          */}
+          <div
+            className="hero__scene-layer hero__scene-layer--under"
+            /* First frame: show slide 1 over background only. Once scrolling starts, reveal scene 2 under the SVG. */
+            style={{
+              opacity: hasFirstTransitionStarted ? 1 : 0,
+              transform: `translate3d(0, ${underSceneOffsetVh}vh, 0)`
+            }}
+          >
             {renderScene(2)}
           </div>
 
           {/*
-            Scene 1 is intentionally translated downward while scrolling through this stage.
-            This creates the paper-sheet reveal effect over scene 2 underneath.
+            Sequence:
+            1) Scene 1 starts as a reduced panel so the background layer is visible.
+            2) Early scroll subtly scales the panel up.
+            3) Remaining scroll drops the full panel down to reveal scene 2 from the top.
           */}
           <div
-            className="hero__scene-layer hero__scene-layer--top"
-            style={{ transform: `translate3d(0, ${firstTransitionProgress * 100}vh, 0)` }}
+            className="hero__scene-layer hero__scene-layer--top hero__scene-layer--first-top"
+            style={{ transform: `translate3d(0, ${firstScenePanelDropVh}vh, 0) scale(${firstScenePanelScale})` }}
           >
             {renderScene(1)}
           </div>
         </div>
       </section>
 
-      <section className="hero__horizontal-transition" ref={horizontalTransitionRef} aria-label="Scene 3 to 4 transition">
+      <section className="hero__horizontal-transition hero__horizontal-transition--scene3" ref={horizontalTransitionRef} aria-label="Scene 3 to 4 transition">
         <div className="hero__horizontal-transition-stage">
           {/* Scene 3 exits to the left as scroll progresses. */}
           <div
@@ -335,7 +437,60 @@ function Hero() {
         </div>
       </section>
 
-      {Array.from({ length: 13 }, (_, index) => index + 5).map((imageNumber) => renderScene(imageNumber))}
+      {Array.from({ length: 3 }, (_, index) => index + 5).map((imageNumber) => renderScene(imageNumber))}
+
+      <section className="hero__horizontal-transition" ref={horizontalTransition8To9Ref} aria-label="Scene 8 to 9 transition">
+        <div className="hero__horizontal-transition-stage">
+          {/* Scene 8 exits to the left as scroll progresses. */}
+          <div
+            className="hero__scene-layer hero__scene-layer--horizontal-current"
+            style={{ transform: `translate3d(${-horizontalTransition8To9Progress * 100}%, 0, 0)` }}
+          >
+            {renderScene(8)}
+          </div>
+
+          {/* Scene 9 enters from the right in sync with scene 8. */}
+          <div
+            className="hero__scene-layer hero__scene-layer--horizontal-next"
+            style={{ transform: `translate3d(${(1 - horizontalTransition8To9Progress) * 100}%, 0, 0)` }}
+          >
+            {renderScene(9)}
+          </div>
+        </div>
+      </section>
+
+      {Array.from({ length: 5 }, (_, index) => index + 10).map((imageNumber) => renderScene(imageNumber))}
+
+      <section className="hero__paper-transition" ref={scene15To16TransitionRef} aria-label="Scene 15 to 16 inverted paper transition">
+        <div className="hero__paper-transition-stage">
+          <div
+            className="hero__scene-layer hero__scene-layer--under"
+            /* Scene 15 slides up while scene 16 slides down during the extended transition. */
+            style={{
+              transform: `translate3d(0, ${-scene15To16TransitionProgress * 110}vh, 0)`
+            }}
+          >
+            {renderScene(15)}
+          </div>
+
+          {/*
+            Inverted paper move: scene 16 drops in from above while scrolling down.
+            Scene 15 stays underneath so there is no duplicate scene rendering.
+          */}
+          <div
+            className="hero__scene-layer hero__scene-layer--top"
+            /* Scene 16 slides down from further above now that we have extended scrollable space. */
+            style={{ 
+              transform: `translate3d(0, ${(-100 + scene15To16TransitionProgress * 100)}vh, 0)`,
+              opacity: Math.max(0, scene15To16TransitionProgress * 20)
+            }}
+          >
+            {renderScene(16)}
+          </div>
+        </div>
+      </section>
+
+      {renderScene(17)}
     </section>
   )
 }

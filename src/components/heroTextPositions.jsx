@@ -4,11 +4,11 @@ const HERO_COMPOSITION_HEIGHT = 900
 const HERO_TEXT_POSITIONS = {
   year: {
     x: 225,
-    y: 118
+    y: 130
   },
   role: {
     x: 1050,
-    y: 260
+    y: 300
   },
   overlay1Name: {
     x: 334,
@@ -40,29 +40,29 @@ const HERO_TEXT_POSITIONS = {
   overlay2Line15: { x: 630, y: 796 },
   overlay2Line16: { x: 630, y: 827 },
 
-  overlay3TitleEducation: { x: 160, y: 118 },
-  overlay3HighSchoolLabel: { x: 180, y: 162 },
-  overlay3HighSchoolValue: { x: 180, y: 186 },
-  overlay3UniversityLabel: { x: 180, y: 245 },
-  overlay3UniversityValue1: { x: 180, y: 270 },
-  overlay3UniversityValue2: { x: 180, y: 295 },
+  overlay3TitleEducation: { x: 30, y: 118 },
+  overlay3HighSchoolLabel: { x: 50, y: 162 },
+  overlay3HighSchoolValue: { x: 50, y: 186 },
+  overlay3UniversityLabel: { x: 50, y: 245 },
+  overlay3UniversityValue1: { x: 50, y: 270 },
+  overlay3UniversityValue2: { x: 50, y: 295 },
 
-  overlay3TitleWork: { x: 160, y: 350 },
-  overlay3WorkValue: { x: 180, y: 390 },
+  overlay3TitleWork: { x: 30, y: 350 },
+  overlay3WorkValue: { x: 50, y: 390 },
 
-  overlay3TitleLanguages: { x: 160, y: 445 },
-  overlay3LanguageValue1: { x: 180, y: 485 },
-  overlay3LanguageValue2: { x: 180, y: 510 },
+  overlay3TitleLanguages: { x: 30, y: 445 },
+  overlay3LanguageValue1: { x: 50, y: 485 },
+  overlay3LanguageValue2: { x: 50, y: 510 },
 
-  overlay3TitleSoftSkills: { x: 160, y: 574 },
-  overlay3SkillLeft1: { x: 180, y: 615 },
-  overlay3SkillLeft2: { x: 180, y: 642 },
-  overlay3SkillLeft3: { x: 180, y: 670 },
-  overlay3SkillLeft4: { x: 180, y: 698 },
-  overlay3SkillLeft5: { x: 180, y: 726 },
-  overlay3SkillRight1: { x: 340, y: 615 },
-  overlay3SkillRight2: { x: 340, y: 642 },
-  overlay3SkillRight3: { x: 340, y: 670 },
+  overlay3TitleSoftSkills: { x: 30, y: 574 },
+  overlay3SkillLeft1: { x: 50, y: 615 },
+  overlay3SkillLeft2: { x: 50, y: 642 },
+  overlay3SkillLeft3: { x: 50, y: 670 },
+  overlay3SkillLeft4: { x: 50, y: 698 },
+  overlay3SkillLeft5: { x: 50, y: 726 },
+  overlay3SkillRight1: { x: 240, y: 615 },
+  overlay3SkillRight2: { x: 240, y: 642 },
+  overlay3SkillRight3: { x: 240, y: 670 },
 
   overlay3Software1: { x: 724, y: 258 },
   overlay3Software2: { x: 940, y: 258 },
