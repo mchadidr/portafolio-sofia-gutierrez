@@ -4,7 +4,8 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  --hero-paper-transition-distance: 300vh;
+  --hero-paper-transition-distance-first: 45vh;
+  --hero-paper-transition-distance-scene15to16: 300vh;
   --hero-horizontal-transition-distance: 100vh;
 }
 
@@ -93,13 +94,24 @@
 
 .hero__paper-transition {
   position: relative;
-  height: calc(100vh + var(--hero-paper-transition-distance));
+}
+
+.hero__paper-transition--first {
+  height: calc(100vh + var(--hero-paper-transition-distance-first));
+}
+
+.hero__paper-transition--scene15to16 {
+  height: calc(100vh + var(--hero-paper-transition-distance-scene15to16));
 }
 
 .hero__paper-transition-stage {
   position: sticky;
   top: 0;
   height: 100vh;
+  overflow: hidden;
+}
+
+.hero__paper-transition-stage--scene15to16 {
   overflow: visible;
 }
 

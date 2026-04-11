@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import './Hero.css'
 import HERO_TEXT_POSITIONS, { toPercentPosition } from './heroTextPositions.jsx'
 
-const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 1
+const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 0.26
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
 const FIRST_TRANSITION_INITIAL_SCALE = 0.75
 const FIRST_TRANSITION_PEAK_SCALE = 0.98
 const FIRST_TRANSITION_SCALE_PHASE_END = 0.32
-const FIRST_TRANSITION_UNDER_REVEAL_START = 0.22
-const FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END = 0.42
+const FIRST_TRANSITION_UNDER_REVEAL_START = 0.03
+const FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END = 0.2
 const FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH = 7
 const SCENE15_TO_16_START_DEADZONE_RATIO = 0.25
 const SCENE15_TO_16_ENTRY_OFFSET_VH = 110
@@ -340,6 +340,7 @@ function Hero() {
     (FIRST_TRANSITION_PEAK_SCALE - FIRST_TRANSITION_INITIAL_SCALE) * firstScalePhaseProgress
 
   const firstScenePanelDropVh = firstDropPhaseProgress * 100
+  const firstSceneOpacity = firstTransitionProgress >= 0.999 ? 0 : 1
   const hasFirstTransitionStarted = firstTransitionProgress >= FIRST_TRANSITION_UNDER_REVEAL_START
   const shouldShowFirstTransitionBackground =
     firstTransitionProgress < FIRST_TRANSITION_UNDER_REVEAL_START
@@ -371,7 +372,7 @@ function Hero() {
         <p className="hero__progress-counter-line">15 to 16: {scene15To16TransitionProgressPercent}%</p>
       </div>
 
-      <section className="hero__paper-transition" ref={firstTransitionRef} aria-label="First scene transition">
+      <section className="hero__paper-transition hero__paper-transition--first" ref={firstTransitionRef} aria-label="First scene transition">
         <div className="hero__paper-transition-stage">
           <div
             className="hero__scene-layer hero__scene-layer--background"
@@ -410,7 +411,10 @@ function Hero() {
           */}
           <div
             className="hero__scene-layer hero__scene-layer--top hero__scene-layer--first-top"
-            style={{ transform: `translate3d(0, ${firstScenePanelDropVh}vh, 0) scale(${firstScenePanelScale})` }}
+            style={{
+              transform: `translate3d(0, ${firstScenePanelDropVh}vh, 0) scale(${firstScenePanelScale})`,
+              opacity: firstSceneOpacity
+            }}
           >
             {renderScene(1)}
           </div>
@@ -461,8 +465,8 @@ function Hero() {
 
       {Array.from({ length: 5 }, (_, index) => index + 10).map((imageNumber) => renderScene(imageNumber))}
 
-      <section className="hero__paper-transition" ref={scene15To16TransitionRef} aria-label="Scene 15 to 16 inverted paper transition">
-        <div className="hero__paper-transition-stage">
+      <section className="hero__paper-transition hero__paper-transition--scene15to16" ref={scene15To16TransitionRef} aria-label="Scene 15 to 16 inverted paper transition">
+        <div className="hero__paper-transition-stage hero__paper-transition-stage--scene15to16">
           <div
             className="hero__scene-layer hero__scene-layer--under"
             /* Scene 15 slides up while scene 16 slides down during the extended transition. */
