@@ -71,7 +71,33 @@ const HERO_TEXT_POSITIONS = {
   overlay3Software5: { x: 742, y: 424 },
   overlay3Software6: { x: 910, y: 424 },
   overlay3Software7: { x: 1116, y: 424 },
-  overlay3Software8: { x: 1268, y: 424 }
+  overlay3Software8: { x: 1268, y: 424 },
+
+  overlay5Title: { x: 60, y: 570 },
+  overlay5Paragraph: { x:40, y: 698 },
+  overlay5Partnership: { x: 40, y: 840 },
+
+  overlay6Title: { x: 840, y: 54 },
+  overlay6Paragraph1: { x: 830, y: 150 },
+  overlay6Paragraph2: { x: 830, y: 330 },
+  overlay6Paragraph3: { x: 830, y: 430 },
+  overlay6Paragraph4: { x: 830, y: 590 },
+  overlay6Partnership: { x: 830, y: 750 },
+
+  overlay7Title: { x: 50, y: 44 },
+  overlay7Paragraph: { x: 50, y: 220 },
+  overlay7Partnership: { x: 30, y: 825 },
+
+  overlay8Title: { x: 90, y: 58 },
+  overlay8Paragraph1: { x:105, y: 248 },
+  overlay8Paragraph2: { x: 105, y: 340 },
+  overlay8Paragraph3: { x: 105, y: 495 },
+  overlay8Award: { x: 105, y: 578 },
+  overlay8Partnership: { x: 105, y: 664 },
+
+  overlay16EmailBox: { x: 98, y: 538},
+  overlay16PhoneBox: { x: 680, y: 538 },
+  overlay16SocialBox: { x: 1100, y: 538 }
 }
 
 function toPercentPosition({ x, y }) {

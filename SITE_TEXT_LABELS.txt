@@ -1,0 +1,324 @@
+SITE TEXT INVENTORY
+Project: SGB Atelier Portfolio
+Generated: 2026-04-12
+
+[document.title]
+Sofia Gutierrez — Industrial Design
+
+[navbar.wordmark]
+SGB Atelier
+
+[navbar.link.about]
+About
+
+[navbar.link.projects]
+Projects
+
+[navbar.link.contact]
+Contact
+
+[navbar.cta]
+Get in Touch
+
+[mobile-blocker.message.line1]
+This site is not available for mobile view yet.
+
+[mobile-blocker.message.line2]
+Please use a desktop device.
+
+[hero.overlay.primary.year]
+2 0 2 6
+
+[hero.about.title.main]
+About
+
+[hero.about.title.italic]
+me
+
+[hero.about.line1]
+Welcome to my creative portfolio, where imagination meets tangibility. Here,
+
+[hero.about.line2]
+you will find a curated selection of projects that reflect my passion for design,
+
+[hero.about.line3]
+storytelling, and visual exploration, each one driven by a constant desire to
+
+[hero.about.line4]
+push creative boundaries.
+
+[hero.about.line5]
+I am a Product Design student pursuing a double degree between
+
+[hero.about.line6]
+Universidad Pontificia Bolivariana in Colombia and LCI Veritas in Costa
+
+[hero.about.line7]
+Rica. This international academic experience has allowed me to develop a
+
+[hero.about.line8]
+broader, more diverse perspective on design, integrating different
+
+[hero.about.line9]
+methodologies, cultural contexts, and approaches to problem-solving.
+
+[hero.about.line10]
+As a future designer, I stand out for my creativity, passion, and
+
+[hero.about.line11]
+determination. I approach every challenge as an opportunity to grow,
+
+[hero.about.line12]
+consistently stepping outside my comfort zone to expand my skills and
+
+[hero.about.line13]
+perspective.
+
+[hero.about.line14]
+My work is defined by energy, leadership, and a strong commitment to
+
+[hero.about.line15]
+excellence. I strive to reflect this mindset in every project I develop—
+
+[hero.about.line16]
+transforming ideas into meaningful and tangible experiences.
+
+[hero.education.section.educational-background]
+Educational background
+
+[hero.education.high-school.label]
+High School:
+
+[hero.education.high-school.value]
+Instituto Jorge Robledo in Medellín, Colombia
+
+[hero.education.university.label]
+University:
+
+[hero.education.university.value1]
+Universidad Pontificia Bolivariana, Medellín, Colombia.
+
+[hero.education.university.value2]
+LCI Veritas, San José, Costa Rica.
+
+[hero.education.section.work]
+Work
+
+[hero.education.work.value]
+Class monitor at Universidad Pontificia Bolivariana
+
+[hero.education.section.languages]
+Languages
+
+[hero.education.language.spanish]
+Spanish C1 (native)
+
+[hero.education.language.english]
+English B2 (certified)
+
+[hero.education.section.soft-skills]
+Soft skills
+
+[hero.education.skill.1]
+Detail-oriented
+
+[hero.education.skill.2]
+Teamwork
+
+[hero.education.skill.3]
+Time management
+
+[hero.education.skill.4]
+Leadership
+
+[hero.education.skill.5]
+Creative thinking
+
+[hero.education.skill.6]
+Problem solving
+
+[hero.education.skill.7]
+Fast thinking
+
+[hero.education.skill.8]
+Active listening
+
+[hero.education.software.hidden.1]
+Procreate
+
+[hero.education.software.hidden.2]
+Keyshot
+
+[hero.education.software.hidden.3]
+SolidWorks
+
+[hero.education.software.hidden.4]
+CSWA
+
+[hero.education.software.hidden.5]
+Canva
+
+[hero.education.software.hidden.6]
+Rhinoceros 3D
+
+[hero.education.software.hidden.7]
+Office 365
+
+[hero.education.software.hidden.8]
+Adobe Illustrator
+
+[hero.slide5.title.number]
+1.
+
+[hero.slide5.title.text]
+Abrazo de lirio
+
+[hero.slide5.body]
+Table lamp with warm LED lighting. Made of MDF, it has an almond shape with straight cuts at the ends. The circular levels are connected by surfaces of revolution, creating a dialogue between light and subtraction. This lamp takes its inspiration from the peace flower and is designed to be an object of contemplation, bringing life to spaces and making them stand out.
+
+[hero.slide5.partnership]
+Partnership: Mariana Pérez
+
+[hero.slide6.title.number]
+2.
+
+[hero.slide6.title.text]
+Siestoteca
+
+[hero.slide6.body.paragraph1]
+A multifunctional textile product that allows you to adapt any space in the library or university for a much more comfortable nap.
+
+[hero.slide6.body.paragraph2]
+It's designed for the entire university community, from students and professors to staff and administrators who spend all day on campus.
+
+[hero.slide6.body.paragraph3]
+It consists of a padded textile base that can be transformed into a resting surface, blanket, or cover, and can be folded into a bag to take it anywhere. It also includes an eye mask and lavender essential oil in its pockets to enhance the user's rest.
+
+[hero.slide6.body.paragraph4]
+This project received an academic award and was featured at the design fair in the Perpetuo Socorro creative district in Medellín.
+
+[hero.slide6.partnership]
+Partnership: Manuela Aldana, Sara Guzmán
+
+[hero.slide7.title.number]
+3.
+
+[hero.slide7.title.text]
+Nudos y lazos
+
+[hero.slide7.body]
+A pet-friendly home furniture solution designed to strengthen the emotional bond between humans and their pets. With its enveloping shapes and warm materials, the system creates shared spaces for relaxation that foster closeness and well-being. Its versatile design integrates seamlessly into various areas of the home, transforming them into places of connection, companionship, and emotional warmth.
+
+[hero.slide7.partnership]
+Partnership: Mariana Pérez, Isabella García
+
+[hero.slide8.title.number]
+4.
+
+[hero.slide8.title.text]
+BlueMetrics
+
+[hero.slide8.body.paragraph1]
+A portable marine monitoring system designed to measure key oceanographic parameters, such as pH, temperature, and salinity, in real time.
+
+[hero.slide8.body.paragraph2]
+It integrates calibrated sensors into a durable, field-ready device, enabling on-site data collection in coastal and marine environments. The system is complemented by a mobile application that allows for data recording, visualization, and structured analysis.
+
+[hero.slide8.body.paragraph3]
+It improves access to reliable marine data for research, environmental monitoring, and conservation initiatives.
+
+[hero.slide8.award.line1]
+Best project from the LCI Veritas product design school
+
+[hero.slide8.award.line2]
+2025-03
+
+[hero.slide8.partnership]
+Partnership: Jimena Rojas
+
+[a11y.nav.label]
+Main navigation
+
+[a11y.wordmark.home]
+SGB Atelier home
+
+[a11y.hero.composition]
+Hero composition
+
+[a11y.hero.transition.first]
+First scene transition
+
+[a11y.hero.transition.scene3to4]
+Scene 3 to 4 transition
+
+[a11y.hero.transition.scene8to9]
+Scene 8 to 9 transition
+
+[a11y.hero.transition.scene15to16]
+Scene 15 to 16 inverted paper transition
+
+[a11y.hero.branch.scene5]
+Scene 5 local detail branch
+
+[a11y.hero.branch.scene6]
+Scene 6 local detail branch
+
+[a11y.hero.branch.scene7]
+Scene 7 local detail branch
+
+[a11y.hero.trigger.open5]
+Open Scene 5 details
+
+[a11y.hero.trigger.open6]
+Open Scene 6 details
+
+[a11y.hero.trigger.open7]
+Open Scene 7 details
+
+[a11y.hero.trigger.open8]
+Open Scene 8 details
+
+[a11y.hero.trigger.close5]
+Close Scene 5 details
+
+[a11y.hero.trigger.close6]
+Close Scene 6 details
+
+[a11y.hero.trigger.close7]
+Close Scene 7 details
+
+[a11y.hero.trigger.close8]
+Close Scene 8 details
+
+[a11y.hero.dialog.5]
+Scene 5 details
+
+[a11y.hero.dialog.6]
+Scene 6 details
+
+[a11y.hero.dialog.7]
+Scene 7 details
+
+[a11y.hero.dialog.8]
+Scene 8 details
+
+[system.hero.slide-index-template]
+Slide {number_or_custom_label}
+
+[system.hero.image-alt-template]
+Featured work {imageNumber}
+
+[debug.counter.y]
+y:
+
+[debug.counter.1to2]
+1 to 2:
+
+[debug.counter.3to4]
+3 to 4:
+
+[debug.counter.8to9]
+8 to 9:
+
+[debug.counter.15to16]
+15 to 16:

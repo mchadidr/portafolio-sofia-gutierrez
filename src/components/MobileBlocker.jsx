@@ -1,12 +1,12 @@
 import './MobileBlocker.css'
 
-function MobileBlocker() {
+function MobileBlocker({ t }) {
   return (
     <div className="mobile-blocker" role="alert" aria-live="polite">
       <p className="mobile-blocker__message">
-        This site is not available for mobile view yet.
+        {t.mobileBlocker.line1}
         <br />
-        Please use a desktop device.
+        {t.mobileBlocker.line2}
       </p>
     </div>
   )
