@@ -990,7 +990,7 @@ function Hero({ t, lang }) {
                   {renderScene(5, {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/5bes.svg`
-                      : `${import.meta.env.BASE_URL}images/5b.svg`,
+                      : `${import.meta.env.BASE_URL}images/5B.svg`,
                     customSlideLabel: '5B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -1040,7 +1040,7 @@ function Hero({ t, lang }) {
                   {renderScene(6, {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/6bes.svg`
-                      : `${import.meta.env.BASE_URL}images/6b.svg`,
+                      : `${import.meta.env.BASE_URL}images/6B.svg`,
                     customSlideLabel: '6B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -1090,7 +1090,7 @@ function Hero({ t, lang }) {
                   {renderScene(7, {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/7bes.svg`
-                      : `${import.meta.env.BASE_URL}images/7b.svg`,
+                      : `${import.meta.env.BASE_URL}images/7B.svg`,
                     customSlideLabel: '7B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -1138,7 +1138,7 @@ function Hero({ t, lang }) {
               {renderScene(8, {
                 customImageSrc: lang === 'es'
                   ? `${import.meta.env.BASE_URL}images/8bes.svg`
-                  : `${import.meta.env.BASE_URL}images/8b.svg`,
+                  : `${import.meta.env.BASE_URL}images/8B.svg`,
                 customSlideLabel: '8B',
                 hideOverlay: true,
                 hideSlideIndex: true
