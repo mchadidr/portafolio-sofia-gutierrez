@@ -808,17 +808,49 @@ function Hero({ t, lang }) {
     if (isCreditsImage) {
       return (
         <div className="hero__overlay-content hero__overlay-content--slide17">
-          <p className="hero__slide17-credit-line hero__slide17-credit-line--design">
-            {h.slide17.designedBy}
-          </p>
-          <a
-            className="hero__slide17-credit-line hero__slide17-credit-line--website"
-            href="https://github.com/mchadidr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {h.slide17.websiteBy}
-          </a>
+          <div className="hero__slide17-credit hero__slide17-credit--design">
+            <p className="hero__slide17-credit-line hero__slide17-credit-line--design">
+              {h.slide17.designedBy}
+            </p>
+            <span className="hero__slide17-particles hero__slide17-particles--design" aria-hidden="true">
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--one">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--two">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--three">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--four">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--five">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--six">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--seven">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--eight">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--nine">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--ten">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--eleven">✦</span>
+              <span className="hero__slide17-sparkle hero__slide17-sparkle--twelve">✦</span>
+            </span>
+          </div>
+          <div className="hero__slide17-credit hero__slide17-credit--website">
+            <a
+              className="hero__slide17-credit-line hero__slide17-credit-line--website"
+              href="https://github.com/mchadidr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {h.slide17.websiteBy}
+            </a>
+            <span className="hero__slide17-particles hero__slide17-particles--website" aria-hidden="true">
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--one">0</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--two">1</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--three">&gt;</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--four">&lt;&gt;</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--five">0</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--six">1</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--seven">&gt;</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--eight">&lt;&gt;</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--nine">0</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--ten">1</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--eleven">&gt;</span>
+              <span className="hero__slide17-digital-particle hero__slide17-digital-particle--twelve">&lt;&gt;</span>
+            </span>
+          </div>
           <p className="hero__slide17-credit-line hero__slide17-credit-line--copyright">
             {h.slide17.copyright}
           </p>
