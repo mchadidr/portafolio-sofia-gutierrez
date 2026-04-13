@@ -22,6 +22,41 @@ const SCENE15_TO_16_START_DEADZONE_RATIO = 0
 const SCENE15_TO_16_ENTRY_OFFSET_VH = 82
 const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 1.2
 
+function buildCaseAgnosticSvgCandidates(sourcePath) {
+  if (typeof sourcePath !== 'string' || !/\.svg(?:[?#].*)?$/i.test(sourcePath)) {
+    return [sourcePath]
+  }
+
+  const match = sourcePath.match(/^(.*\/)?([^/?#]+)\.svg([?#].*)?$/i)
+
+  if (!match) {
+    return [sourcePath]
+  }
+
+  const directory = match[1] ?? ''
+  const fileStem = match[2]
+  const suffix = match[3] ?? ''
+  const capitalizedStem = fileStem.length > 0
+    ? `${fileStem.charAt(0).toUpperCase()}${fileStem.slice(1).toLowerCase()}`
+    : fileStem
+  const stemCandidates = [...new Set([
+    fileStem,
+    fileStem.toLowerCase(),
+    fileStem.toUpperCase(),
+    capitalizedStem
+  ])]
+  const extensionCandidates = ['svg', 'SVG']
+  const candidates = []
+
+  stemCandidates.forEach((stemCandidate) => {
+    extensionCandidates.forEach((extensionCandidate) => {
+      candidates.push(`${directory}${stemCandidate}.${extensionCandidate}${suffix}`)
+    })
+  })
+
+  return [...new Set(candidates)]
+}
+
 function Hero({ t, lang }) {
   const [firstTransitionProgress, setFirstTransitionProgress] = useState(0)
   const [horizontalTransitionProgress, setHorizontalTransitionProgress] = useState(0)
@@ -912,6 +947,8 @@ function Hero({ t, lang }) {
     const isSlide8Scene = imageNumber === 8
     const isFirstScene = imageNumber === 1
     const sceneForegroundSrc = isCompositionFixScene ? compositionForegroundSvgSrc : imageSrc
+    const sceneForegroundSrcCandidates = buildCaseAgnosticSvgCandidates(sceneForegroundSrc)
+    const initialSceneForegroundSrc = sceneForegroundSrcCandidates[0] ?? sceneForegroundSrc
 
     return (
       <div
@@ -924,22 +961,25 @@ function Hero({ t, lang }) {
 
         <img
           className={`hero__image-layer${isCompositionFixScene ? ' hero__image-layer--composition-foreground' : ''}`}
-          src={sceneForegroundSrc}
+          src={initialSceneForegroundSrc}
           alt={formatTemplate(h.templates.featuredWorkAlt, { number: imageNumber })}
           loading="lazy"
           onLoad={() => {
             if (imageNumber === 8) {
-              console.log('✓ Scene 8 image loaded successfully:', sceneForegroundSrc)
+              console.log('✓ Scene 8 image loaded successfully:', initialSceneForegroundSrc)
             }
           }}
           onError={(event) => {
-            if (imageNumber === 8) {
-              console.log('✗ Scene 8 image failed to load:', sceneForegroundSrc)
+            const nextFallbackIndex = Number(event.currentTarget.dataset.fallbackIndex ?? '0') + 1
+
+            if (nextFallbackIndex < sceneForegroundSrcCandidates.length) {
+              event.currentTarget.dataset.fallbackIndex = String(nextFallbackIndex)
+              event.currentTarget.src = sceneForegroundSrcCandidates[nextFallbackIndex]
+              return
             }
-            if (isCompositionFixScene && event.currentTarget.src !== imageSrc) {
-              // Temporary fallback until scene-specific foreground SVG files are available.
-              event.currentTarget.onerror = null
-              event.currentTarget.src = imageSrc
+
+            if (imageNumber === 8) {
+              console.log('✗ Scene 8 image failed to load:', sceneForegroundSrcCandidates)
             }
           }}
         />
