@@ -920,6 +920,10 @@ function Hero({ t, lang }) {
     const seventeenthSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/17es.svg`
       : `${import.meta.env.BASE_URL}images/17.svg`
+    const tenthToFifteenthSceneImageSrc =
+      lang === 'es' && imageNumber >= 10 && imageNumber <= 15
+        ? `${import.meta.env.BASE_URL}images/${imageNumber}es.svg`
+        : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
     const defaultImageSrc = shouldUseSvgImage
       ? (imageNumber === 1
         ? firstSceneImageSrc
@@ -933,7 +937,7 @@ function Hero({ t, lang }) {
                 ? sixteenthSceneImageSrc
                 : imageNumber === 17
                   ? seventeenthSceneImageSrc
-                  : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`)
+                  : tenthToFifteenthSceneImageSrc)
       : imagePaths[imageNumber - 1]
     const imageSrc = customImageSrc ?? defaultImageSrc
     const compositionForegroundSvgSrc = imageNumber === 3
