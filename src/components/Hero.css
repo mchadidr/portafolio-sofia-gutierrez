@@ -852,6 +852,7 @@
 
 .hero__about-highlight {
   color: #8b111c;
+  font-weight: 700;
 }
 
 .hero__section-title {
@@ -1225,7 +1226,7 @@
 .hero__slide7-partnership {
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1.35cqw;
-  font-weight: 700;
+
   color: #70702b;
   line-height: 1.2;
   white-space: nowrap;
