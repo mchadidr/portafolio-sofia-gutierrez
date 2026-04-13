@@ -371,7 +371,7 @@ const ES_TRANSLATIONS = {
       ...EN_TRANSLATIONS.hero.slide17,
       designedBy: 'Diseñado por: Sofía Gutiérrez Bohórquez',
       websiteBy: 'Website desarrollado por: Miguel Chadid',
-      copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
+      copyright: '© 2026 Sofía Gutiérrez. Todos los derechos reservados.'
     }
   }
 }

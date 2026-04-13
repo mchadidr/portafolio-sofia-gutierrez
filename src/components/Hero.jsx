@@ -880,7 +880,9 @@ function Hero({ t, lang }) {
     const sixteenthSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/16es.svg`
       : `${import.meta.env.BASE_URL}images/16.svg`
-    const seventeenthSceneImageSrc = `${import.meta.env.BASE_URL}images/17.svg`
+    const seventeenthSceneImageSrc = lang === 'es'
+      ? `${import.meta.env.BASE_URL}images/17es.svg`
+      : `${import.meta.env.BASE_URL}images/17.svg`
     const defaultImageSrc = shouldUseSvgImage
       ? (imageNumber === 1
         ? firstSceneImageSrc
