@@ -1375,7 +1375,8 @@ a.hero__slide16-contact-value:focus-visible {
 
 .hero__slide17-credit {
   position: absolute;
-  left: 2.8%;
+  right: 2.8%;
+  left: auto;
   margin: 0;
   pointer-events: auto;
   transition: transform 150ms ease;
@@ -1400,8 +1401,9 @@ a.hero__slide16-contact-value:focus-visible {
   text-decoration: none;
   display: inline-block;
   transition: transform 140ms ease, opacity 140ms ease;
-  transform-origin: left center;
+  transform-origin: right center;
   z-index: 1;
+  text-align: right;
 }
 
 .hero__slide17-credit-line--design {
@@ -1413,11 +1415,12 @@ a.hero__slide16-contact-value:focus-visible {
 }
 
 .hero__slide17-credit-line--copyright {
-  left: auto;
-  right: 2.8%;
+  position: absolute;
+  left: 2.8%;
+  right: auto;
   bottom: 2.8%;
   color: #1f1f1f;
-  text-align: right;
+  text-align: left;
 }
 
 a.hero__slide17-credit-line--website:hover,

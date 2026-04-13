@@ -35,9 +35,7 @@ function Navbar({ t, lang, setLang }) {
           >
             <span className="navbar__lang-option">{t.navbar.language.esLabel}</span>
             <span className="navbar__lang-track" aria-hidden="true">
-              <span className={`navbar__lang-thumb${isSpanish ? ' is-es' : ''}`}>
-                {isSpanish ? t.navbar.language.esFlag : t.navbar.language.enFlag}
-              </span>
+              <span className={`navbar__lang-thumb${isSpanish ? ' is-es' : ''}`} />
             </span>
             <span className="navbar__lang-option">{t.navbar.language.enLabel}</span>
           </button>

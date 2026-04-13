@@ -13,6 +13,7 @@ const FIRST_TRANSITION_PEAK_SCALE = 0.98
 const FIRST_TRANSITION_SCALE_PHASE_END = 0.32
 const FIRST_TRANSITION_UNDER_REVEAL_START = 0.03
 const FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END = 0.2
+const FIRST_TRANSITION_UNDER_SCENE_FADE_START = 0.3
 const FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH = 7
 const SCENE5_BRANCH_TRANSITION_MS = 620
 const SCENE15_TO_16_START_DEADZONE_RATIO = 0
@@ -1165,6 +1166,14 @@ function Hero({ t, lang }) {
   const hasFirstTransitionStarted = firstTransitionProgress >= FIRST_TRANSITION_UNDER_REVEAL_START
   const shouldShowFirstTransitionBackground =
     firstTransitionProgress < FIRST_TRANSITION_UNDER_REVEAL_START
+  const underSceneFadeProgress = firstTransitionProgress <= FIRST_TRANSITION_UNDER_SCENE_FADE_START
+    ? 0
+    : Math.min(
+      (firstTransitionProgress - FIRST_TRANSITION_UNDER_SCENE_FADE_START) /
+      Math.max(1 - FIRST_TRANSITION_UNDER_SCENE_FADE_START, 0.0001),
+      1
+    )
+  const underSceneOpacity = Math.pow(underSceneFadeProgress, 0.45)
   // Delay + smooth reveal for scene 2: it stays lower until reveal starts, then settles into place.
   const underRevealProgress = firstTransitionProgress <= FIRST_TRANSITION_UNDER_REVEAL_START
     ? 0
@@ -1224,7 +1233,7 @@ function Hero({ t, lang }) {
             className="hero__scene-layer hero__scene-layer--under"
             /* First frame: show slide 1 over background only. Once scrolling starts, reveal scene 2 under the SVG. */
             style={{
-              opacity: hasFirstTransitionStarted ? 1 : 0,
+              opacity: underSceneOpacity,
               transform: `translate3d(0, ${underSceneOffsetVh}vh, 0)`
             }}
           >

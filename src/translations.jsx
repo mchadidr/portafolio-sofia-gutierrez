@@ -15,9 +15,7 @@ const EN_TRANSLATIONS = {
     language: {
       ariaToggle: 'Switch language',
       esLabel: 'ES',
-      enLabel: 'EN',
-      esFlag: '🇨🇴',
-      enFlag: '🇺🇸'
+      enLabel: 'EN'
     }
   },
   mobileBlocker: {
@@ -186,7 +184,7 @@ const EN_TRANSLATIONS = {
       socialValue: '@_sofiagutierrez1'
     },
     slide17: {
-      designedBy: 'Designed by: Sofía Gutiérrez Bohórquez.',
+      designedBy: 'Designed by: Sofía Gutiérrez Bohórquez',
       websiteBy: 'Website by: Miguel Chadid',
       copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
     }
@@ -371,7 +369,7 @@ const ES_TRANSLATIONS = {
     },
     slide17: {
       ...EN_TRANSLATIONS.hero.slide17,
-      designedBy: 'Diseñado por: Sofía Gutiérrez Bohórquez.',
+      designedBy: 'Diseñado por: Sofía Gutiérrez Bohórquez',
       websiteBy: 'Website desarrollado por: Miguel Chadid',
       copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
     }
