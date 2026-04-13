@@ -4,6 +4,7 @@ import HERO_TEXT_POSITIONS, { toPercentPosition } from './heroTextPositions.jsx'
 
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 0.42
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
+const PROJECTS_NAV_OFFSET_VIEWPORTS = 0.08
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
 const HORIZONTAL_TRANSITION_8TO9_START_DEADZONE_PX = 12
 const FIRST_TRANSITION_INITIAL_SCALE = 0.75
@@ -63,6 +64,7 @@ function Hero({ t, lang }) {
 
   const firstTransitionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
   const sharedCompositionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
+  const sharedBranchBackdropSrc = `${import.meta.env.BASE_URL}images/backgroundB.svg`
   const sharedBackgroundDebugMode = new URLSearchParams(window.location.search).get('heroBackground') === 'red'
   const sharedBackgroundStyle = sharedBackgroundDebugMode
     ? { backgroundColor: '#d71920', backgroundImage: 'none' }
@@ -74,12 +76,6 @@ function Hero({ t, lang }) {
       (result, [key, value]) => result.replace(`{${key}}`, String(value)),
       template
     )
-  }
-
-  const imageAnchors = {
-    2: 'about',
-    4: 'projects',
-    16: 'contact'
   }
 
   useEffect(() => {
@@ -705,7 +701,7 @@ function Hero({ t, lang }) {
 
   const renderScene = (imageNumber, options = {}) => {
     const { customImageSrc = null, customSlideLabel = null, hideOverlay = false, hideSlideIndex = false } = options
-    const shouldUseSvgImage = (imageNumber === 1 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber >= 7) && imageNumber !== 9
+    const shouldUseSvgImage = imageNumber === 1 || imageNumber >= 3
     const firstSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/1es.svg`
       : `${import.meta.env.BASE_URL}images/1.svg`
@@ -726,7 +722,6 @@ function Hero({ t, lang }) {
     const compositionForegroundSvgSrc = imageNumber === 3
       ? thirdSceneImageSrc
       : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
-    const anchorId = imageAnchors[imageNumber]
     const isVisibleOverlay = (imageNumber === 1 || imageNumber === 2 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber === 7 || imageNumber === 8 || imageNumber === 16) && !hideOverlay
     const isCompositionFixScene = imageNumber === 2 || imageNumber === 3
     const isSlide5Scene = imageNumber === 5
@@ -739,7 +734,6 @@ function Hero({ t, lang }) {
     return (
       <div
         className={`hero__image${isFirstScene ? ' hero__image--svg-transparent' : ''}${isCompositionFixScene ? ' hero__image--composition-fix' : ''}${isSlide5Scene ? ' hero__image--slide5-responsive' : ''}${isSlide6Scene ? ' hero__image--slide6-responsive' : ''}${isSlide7Scene ? ' hero__image--slide7-responsive' : ''}${isSlide8Scene ? ' hero__image--slide8-responsive' : ''}`}
-        id={anchorId}
         key={`scene-${imageNumber}`}
       >
         {!hideSlideIndex && (
@@ -801,7 +795,7 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene5b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
+                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
                 />
 
                 <div className="hero__scene5b-canvas">
@@ -849,7 +843,7 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene6b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
+                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
                 />
 
                 <div className="hero__scene6b-canvas">
@@ -897,7 +891,7 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene7b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
+                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
                 />
 
                 <div className="hero__scene7b-canvas">
@@ -943,7 +937,7 @@ function Hero({ t, lang }) {
             <div
               className="hero__scene8b-backdrop"
               aria-hidden="true"
-              style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
+              style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
             />
 
             <div className="hero__scene8b-canvas">
@@ -1007,6 +1001,13 @@ function Hero({ t, lang }) {
       </div>
 
       <section className="hero__paper-transition hero__paper-transition--first" ref={firstTransitionRef} aria-label={h.aria.firstTransition}>
+        <span
+          id="about"
+          className="hero__nav-anchor"
+          aria-hidden="true"
+          style={{ top: `${FIRST_TRANSITION_DISTANCE_VIEWPORTS * 100}vh` }}
+        />
+
         <div className="hero__paper-transition-stage">
           <div
             className="hero__scene-layer hero__scene-layer--background"
@@ -1056,6 +1057,13 @@ function Hero({ t, lang }) {
       </section>
 
       <section className="hero__horizontal-transition hero__horizontal-transition--scene3" ref={horizontalTransitionRef} aria-label={h.aria.scene3To4Transition}>
+        <span
+          id="projects"
+          className="hero__nav-anchor"
+          aria-hidden="true"
+          style={{ top: `${(HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS + PROJECTS_NAV_OFFSET_VIEWPORTS) * 100}vh` }}
+        />
+
         <div className="hero__horizontal-transition-stage">
           {/* Scene 3 exits to the left as scroll progresses. */}
           <div
@@ -1106,6 +1114,13 @@ function Hero({ t, lang }) {
       {Array.from({ length: 5 }, (_, index) => index + 10).map((imageNumber) => renderScene(imageNumber))}
 
       <section className="hero__paper-transition hero__paper-transition--scene15to16" ref={scene15To16TransitionRef} aria-label={h.aria.scene15To16Transition}>
+        <span
+          id="contact"
+          className="hero__nav-anchor"
+          aria-hidden="true"
+          style={{ top: `${SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS * 100}vh` }}
+        />
+
         <div className="hero__paper-transition-stage hero__paper-transition-stage--scene15to16">
           <div
             className="hero__scene-layer hero__scene-layer--under"

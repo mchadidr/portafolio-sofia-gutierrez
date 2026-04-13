@@ -25,7 +25,7 @@ function Navbar({ t, lang, setLang }) {
           </ul>
         </div>
 
-        {/* ── Right side: CTA button ── */}
+        {/* ── Right side: language toggle ── */}
         <div className="navbar__right">
           <button
             type="button"
@@ -41,10 +41,6 @@ function Navbar({ t, lang, setLang }) {
             </span>
             <span className="navbar__lang-option">{t.navbar.language.enLabel}</span>
           </button>
-
-          <a href="#contact" className="navbar__cta">
-            {t.navbar.cta}
-          </a>
         </div>
       </nav>
     </header>

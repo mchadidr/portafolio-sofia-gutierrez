@@ -97,6 +97,15 @@
   position: relative;
 }
 
+.hero__nav-anchor {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  scroll-margin-top: var(--navbar-height);
+}
+
 .hero__paper-transition--first {
   height: calc(100vh + var(--hero-paper-transition-distance-first));
 }
