@@ -6,7 +6,7 @@
   isolation: isolate;
   width: 100%;
   --hero-paper-transition-distance-first: 45vh;
-  --hero-paper-transition-distance-scene15to16: 110vh;
+  --hero-paper-transition-distance-scene15to16: 137.5vh;
   --hero-horizontal-transition-distance: 100vh;
   --hero-horizontal-transition-distance-8to9: 85vh;
 }
@@ -16,7 +16,7 @@
   top: calc(var(--navbar-height, 0px) + 12px);
   left: 12px;
   z-index: 2147483647;
-  display: block;
+  display: none;
   visibility: visible;
   opacity: 1;
   max-width: min(92vw, 360px);
@@ -179,6 +179,7 @@
   top: 14px;
   right: 14px;
   z-index: 30;
+  display: none;
   padding: 4px 8px;
   border-radius: 6px;
   background: rgba(0, 0, 0, 0.7);

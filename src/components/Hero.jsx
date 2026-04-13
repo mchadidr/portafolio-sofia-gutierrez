@@ -17,8 +17,8 @@ const FIRST_TRANSITION_UNDER_SCENE_FADE_START = 0.3
 const FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH = 7
 const SCENE5_BRANCH_TRANSITION_MS = 620
 const SCENE15_TO_16_START_DEADZONE_RATIO = 0
-const SCENE15_TO_16_ENTRY_OFFSET_VH = 110
-const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 1.1
+const SCENE15_TO_16_ENTRY_OFFSET_VH = 82
+const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 1.2
 
 function Hero({ t, lang }) {
   const [firstTransitionProgress, setFirstTransitionProgress] = useState(0)
@@ -1330,7 +1330,7 @@ function Hero({ t, lang }) {
             className="hero__scene-layer hero__scene-layer--under"
             /* Scene 15 slides up while scene 16 slides down during the extended transition. */
             style={{
-              transform: `translate3d(0, ${-scene15To16TransitionProgress * 110}vh, 0)`
+              transform: `translate3d(0, ${-scene15To16TransitionProgress * SCENE15_TO_16_ENTRY_OFFSET_VH}vh, 0)`
             }}
           >
             {renderScene(15)}
@@ -1345,7 +1345,7 @@ function Hero({ t, lang }) {
             /* Scene 16 slides down from further above now that we have extended scrollable space. */
             style={{ 
               transform: `translate3d(0, ${(-SCENE15_TO_16_ENTRY_OFFSET_VH + scene15To16TransitionProgress * SCENE15_TO_16_ENTRY_OFFSET_VH)}vh, 0)`,
-              opacity: Math.max(0, scene15To16TransitionProgress * 20)
+              opacity: Math.min(1, scene15To16TransitionProgress * 7)
             }}
           >
             {renderScene(16)}
