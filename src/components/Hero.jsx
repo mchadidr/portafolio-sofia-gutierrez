@@ -3,9 +3,11 @@ import './Hero.css'
 import HERO_TEXT_POSITIONS, { SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition } from './heroTextPositions.jsx'
 
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 0.42
+const ABOUT_NAV_OFFSET_VIEWPORTS = 0.08
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
 const HORIZONTAL_TRANSITION_8TO9_DISTANCE_VIEWPORTS = 0.85
-const PROJECTS_NAV_OFFSET_VIEWPORTS = 0.08
+const PROJECTS_NAV_OFFSET_VIEWPORTS = 0.12
+const CONTACT_NAV_OFFSET_VIEWPORTS = 0.08
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
 const HORIZONTAL_TRANSITION_8TO9_START_DEADZONE_PX = 12
 const FIRST_TRANSITION_INITIAL_SCALE = 0.75
@@ -1209,7 +1211,7 @@ function Hero({ t, lang }) {
           id="about"
           className="hero__nav-anchor"
           aria-hidden="true"
-          style={{ top: `${FIRST_TRANSITION_DISTANCE_VIEWPORTS * 100}vh` }}
+          style={{ top: `${(FIRST_TRANSITION_DISTANCE_VIEWPORTS + ABOUT_NAV_OFFSET_VIEWPORTS) * 100}vh` }}
         />
 
         <div className="hero__paper-transition-stage">
@@ -1322,7 +1324,7 @@ function Hero({ t, lang }) {
           id="contact"
           className="hero__nav-anchor"
           aria-hidden="true"
-          style={{ top: `${SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS * 100}vh` }}
+          style={{ top: `${(SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS + CONTACT_NAV_OFFSET_VIEWPORTS) * 100}vh` }}
         />
 
         <div className="hero__paper-transition-stage hero__paper-transition-stage--scene15to16">
