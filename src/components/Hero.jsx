@@ -348,6 +348,7 @@ function Hero({ t, lang }) {
     const isSlide7Image = imageNumber === 7
     const isSlide8Image = imageNumber === 8
     const isContactImage = imageNumber === 16
+    const isCreditsImage = imageNumber === 17
     const readMoreLabel = lang === 'es' ? 'Más detalles' : 'Read more'
     const infoTriggerLangClass = lang === 'es' ? ' hero__info-trigger--es' : ''
 
@@ -804,6 +805,27 @@ function Hero({ t, lang }) {
       )
     }
 
+    if (isCreditsImage) {
+      return (
+        <div className="hero__overlay-content hero__overlay-content--slide17">
+          <p className="hero__slide17-credit-line hero__slide17-credit-line--design">
+            {h.slide17.designedBy}
+          </p>
+          <a
+            className="hero__slide17-credit-line hero__slide17-credit-line--website"
+            href="https://github.com/mchadidr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {h.slide17.websiteBy}
+          </a>
+          <p className="hero__slide17-credit-line hero__slide17-credit-line--copyright">
+            {h.slide17.copyright}
+          </p>
+        </div>
+      )
+    }
+
     return null
   }
 
@@ -822,6 +844,9 @@ function Hero({ t, lang }) {
     const ninthSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/9es.svg`
       : `${import.meta.env.BASE_URL}images/9.svg`
+    const sixteenthSceneImageSrc = lang === 'es'
+      ? `${import.meta.env.BASE_URL}images/16es.svg`
+      : `${import.meta.env.BASE_URL}images/16.svg`
     const seventeenthSceneImageSrc = `${import.meta.env.BASE_URL}images/17.svg`
     const defaultImageSrc = shouldUseSvgImage
       ? (imageNumber === 1
@@ -832,15 +857,17 @@ function Hero({ t, lang }) {
             ? fourthSceneImageSrc
             : imageNumber === 9
               ? ninthSceneImageSrc
-          : imageNumber === 17
-            ? seventeenthSceneImageSrc
-            : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`)
+              : imageNumber === 16
+                ? sixteenthSceneImageSrc
+                : imageNumber === 17
+                  ? seventeenthSceneImageSrc
+                  : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`)
       : imagePaths[imageNumber - 1]
     const imageSrc = customImageSrc ?? defaultImageSrc
     const compositionForegroundSvgSrc = imageNumber === 3
       ? thirdSceneImageSrc
       : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
-    const isVisibleOverlay = (imageNumber === 1 || imageNumber === 2 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber === 7 || imageNumber === 8 || imageNumber === 16) && !hideOverlay
+    const isVisibleOverlay = (imageNumber === 1 || imageNumber === 2 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber === 7 || imageNumber === 8 || imageNumber === 16 || imageNumber === 17) && !hideOverlay
     const isCompositionFixScene = imageNumber === 2 || imageNumber === 3
     const isSlide5Scene = imageNumber === 5
     const isSlide6Scene = imageNumber === 6
@@ -926,7 +953,9 @@ function Hero({ t, lang }) {
 
                 <div className="hero__scene5b-canvas">
                   {renderScene(5, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/5b.svg`,
+                    customImageSrc: lang === 'es'
+                      ? `${import.meta.env.BASE_URL}images/5bes.svg`
+                      : `${import.meta.env.BASE_URL}images/5b.svg`,
                     customSlideLabel: '5B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -974,7 +1003,9 @@ function Hero({ t, lang }) {
 
                 <div className="hero__scene6b-canvas">
                   {renderScene(6, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/6b.svg`,
+                    customImageSrc: lang === 'es'
+                      ? `${import.meta.env.BASE_URL}images/6bes.svg`
+                      : `${import.meta.env.BASE_URL}images/6b.svg`,
                     customSlideLabel: '6B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -1022,7 +1053,9 @@ function Hero({ t, lang }) {
 
                 <div className="hero__scene7b-canvas">
                   {renderScene(7, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/7b.svg`,
+                    customImageSrc: lang === 'es'
+                      ? `${import.meta.env.BASE_URL}images/7bes.svg`
+                      : `${import.meta.env.BASE_URL}images/7b.svg`,
                     customSlideLabel: '7B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -1068,7 +1101,9 @@ function Hero({ t, lang }) {
 
             <div className="hero__scene8b-canvas">
               {renderScene(8, {
-                customImageSrc: `${import.meta.env.BASE_URL}images/8b.svg`,
+                customImageSrc: lang === 'es'
+                  ? `${import.meta.env.BASE_URL}images/8bes.svg`
+                  : `${import.meta.env.BASE_URL}images/8b.svg`,
                 customSlideLabel: '8B',
                 hideOverlay: true,
                 hideSlideIndex: true

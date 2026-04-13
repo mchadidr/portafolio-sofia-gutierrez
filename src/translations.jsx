@@ -184,6 +184,11 @@ const EN_TRANSLATIONS = {
       phoneValue: '+57 (316) 616-7911',
       socialLabel: 'Social Media',
       socialValue: '@_sofiagutierrez1'
+    },
+    slide17: {
+      designedBy: 'Designed by: Sofía Gutiérrez Bohórquez.',
+      websiteBy: 'Website by: Miguel Chadid',
+      copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
     }
   }
 }
@@ -363,6 +368,12 @@ const ES_TRANSLATIONS = {
       emailLabel: 'Correo electrónico',
       phoneLabel: 'Número de teléfono',
       socialLabel: 'Redes sociales'
+    },
+    slide17: {
+      ...EN_TRANSLATIONS.hero.slide17,
+      designedBy: 'Diseñado por: Sofía Gutiérrez Bohórquez.',
+      websiteBy: 'Website desarrollado por: Miguel Chadid',
+      copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
     }
   }
 }

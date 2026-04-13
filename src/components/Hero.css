@@ -1368,3 +1368,41 @@ a.hero__slide16-contact-value:hover,
 a.hero__slide16-contact-value:focus-visible {
   text-decoration: underline;
 }
+
+.hero__overlay-content--slide17 {
+  pointer-events: none;
+}
+
+.hero__slide17-credit-line {
+  position: absolute;
+  left: 2.8%;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 0.95cqw, 1rem);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.hero__slide17-credit-line--design {
+  bottom: 4.8%;
+  color: #f498a4;
+}
+
+.hero__slide17-credit-line--website {
+  bottom: 2.8%;
+  color: #70702b;
+}
+
+.hero__slide17-credit-line--copyright {
+  left: auto;
+  right: 2.8%;
+  bottom: 2.8%;
+  color: #1f1f1f;
+  text-align: right;
+}
+
+a.hero__slide17-credit-line--website:hover,
+a.hero__slide17-credit-line--website:focus-visible {
+  text-decoration: underline;
+}
