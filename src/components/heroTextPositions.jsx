@@ -100,6 +100,135 @@ const HERO_TEXT_POSITIONS = {
   overlay16SocialBox: { x: 1100, y: 538 }
 }
 
+// Centralized Scene 6 layout controls for quick tuning.
+// Edit these values to adjust paragraph/partnership box size and distribution in one place.
+const SCENE6_TEXT_LAYOUT = {
+  paragraph: {
+    x: 830,
+    y: 150,
+    widthPercent: 38.75,
+    fontSizeCqw: 1.45
+  },
+  partnership: {
+    x: 830,
+    y: 750,
+    fontSizeCqw: 1.45
+  }
+}
+
+// Centralized Scene 7 paragraph text-box controls.
+// Keep these in one place so width/position/size can be tuned without touching JSX/CSS logic.
+const SCENE7_TEXT_LAYOUT = {
+  textBox: {
+    x: 50,
+    y: 200,
+    widthPercent: 90.75,
+    fontSizeCqw: 1.45,
+    paddingCqw: 0
+  }
+}
+
+// Centralized Scene 8 text-box controls.
+// Keep paragraph, award, and partnership aligned by editing values here only.
+const SCENE8_TEXT_LAYOUT = {
+  paragraph: {
+    x: 105,
+    y: 248,
+    widthPercent: 47,
+    fontSizeCqw: 1.45,
+    paddingCqw: 0
+  },
+  award: {
+    offsetY: 370,
+    widthPercent: 47,
+    fontSizeCqw: 1.35,
+    paddingCqw: 0
+  },
+  partnership: {
+    // Distance below paragraph top; acts as adjustable vertical padding under paragraph box.
+    offsetY: 450,
+    widthPercent: 47,
+    fontSizeCqw: 1.35,
+    paddingCqw: 0
+  }
+}
+
+// Centralized Scene 2 paragraph text-box controls.
+// Adjust x/y/width/font/padding here to tune the Slide 2 paragraph layout quickly.
+const SCENE2_TEXT_LAYOUT = {
+  textBox: {
+    x: 620,
+    y: 270,
+    widthPercent: 60,
+    fontSizeCqw: 1.45,
+    paddingCqw: 0
+  }
+}
+
+// Centralized Scene 3 education/experience/languages/skills text-box controls.
+// Keep all section positioning in one place for easy tuning.
+const SCENE3_TEXT_LAYOUT = {
+  education: {
+    x: 50,
+    y: 162,
+    widthPercent: 25,
+    fontSizeCqw: 1.05,
+    paddingCqw: 0
+  },
+  work: {
+    x: 50,
+    y: 390,
+    widthPercent: 25,
+    fontSizeCqw: 1.05,
+    paddingCqw: 0
+  },
+  languages: {
+    x: 50,
+    y: 485,
+    widthPercent: 25,
+    fontSizeCqw: 1.05,
+    paddingCqw: 0
+  },
+  skillsLeft: {
+    x: 50,
+    y: 615,
+    widthPercent: 12,
+    fontSizeCqw: 1.05,
+    paddingCqw: 0
+  },
+  skillsRight: {
+    x: 240,
+    y: 615,
+    widthPercent: 14,
+    fontSizeCqw: 1.05,
+    paddingCqw: 0
+  }
+}
+
+// Centralized Scene 16 contact layout controls.
+// Values are mapped to the current visual positions from the 1600x900 composition.
+const SCENE16_TEXT_LAYOUT = {
+  email: {
+    anchor: 'left',
+    x: 98,
+    y: 538,
+    fontSizeCqw: 2
+  },
+  phone: {
+    anchor: 'left',
+    x: 680,
+    y: 538,
+    fontSizeCqw: 2
+  },
+  social: {
+    // Keep the same visual position as x:1100 by anchoring to the right edge.
+    anchor: 'right',
+    right: 200,
+    y: 538,
+    fontSizeCqw: 2
+  }
+}
+
 function toPercentPosition({ x, y }) {
   return {
     left: `${(x / HERO_COMPOSITION_WIDTH) * 100}%`,
@@ -107,6 +236,6 @@ function toPercentPosition({ x, y }) {
   }
 }
 
-export { HERO_COMPOSITION_WIDTH, HERO_COMPOSITION_HEIGHT, toPercentPosition }
+export { HERO_COMPOSITION_WIDTH, HERO_COMPOSITION_HEIGHT, SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition }
 
 export default HERO_TEXT_POSITIONS

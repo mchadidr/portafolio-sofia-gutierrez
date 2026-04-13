@@ -6,8 +6,9 @@
   isolation: isolate;
   width: 100%;
   --hero-paper-transition-distance-first: 45vh;
-  --hero-paper-transition-distance-scene15to16: 300vh;
+  --hero-paper-transition-distance-scene15to16: 110vh;
   --hero-horizontal-transition-distance: 100vh;
+  --hero-horizontal-transition-distance-8to9: 85vh;
 }
 
 .hero__progress-counter {
@@ -43,6 +44,10 @@
 .hero__horizontal-transition--scene3 {
   /* Overlap by 1px to prevent a sub-pixel seam between scenes 2 and 3. */
   margin-top: -50px;
+}
+
+.hero__horizontal-transition--scene8to9 {
+  height: calc(100vh + var(--hero-horizontal-transition-distance-8to9));
 }
 
 .hero__horizontal-transition-stage {
@@ -147,7 +152,8 @@
   position: relative;
   line-height: 0;
   scroll-margin-top: var(--navbar-height);
-  width: 100%;
+  width: min(95vw, calc(95vh * (1600 / 900)), 1600px);
+  aspect-ratio: 1600 / 900;
   margin: 0 auto;
 }
 
@@ -729,6 +735,46 @@
   font-size: 1.05cqw;
 }
 
+/* Slide 3 text-box styles */
+.hero__slide3-paragraph {
+  position: absolute;
+  margin: 0;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'Arima', sans-serif;
+}
+
+.hero__slide3-text-box {
+  overflow: hidden;
+}
+
+.hero__slide3-paragraph-group {
+  display: block;
+  white-space: normal;
+}
+
+.hero__slide3-paragraph-line {
+  display: inline;
+  white-space: normal;
+}
+
+.hero__slide3-paragraph-break {
+  display: block;
+  height: 0.95em;
+}
+
+.hero__slide3-education-text-box,
+.hero__slide3-work-text-box,
+.hero__slide3-languages-text-box,
+.hero__slide3-skills-left-text-box,
+.hero__slide3-skills-right-text-box {
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
 .hero__about-title {
   position: absolute;
   margin: 0;
@@ -765,9 +811,47 @@
   white-space: nowrap;
 }
 
+/*
+  Scene 2 paragraph text-box matches Scene 5 sizing behavior.
+  Tune placement/size in SCENE2_TEXT_LAYOUT (heroTextPositions.jsx).
+*/
+.hero__slide2-paragraph {
+  position: absolute;
+  margin: 0;
+  width: calc(100% - 11.25%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.45cqw;
+  font-weight: 500;
+  color: #1f1f1f;
+  line-height: 1.5;
+  white-space: normal;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero__slide2-paragraph-group {
+  display: block;
+  white-space: normal;
+}
+
+.hero__slide2-paragraph-line {
+  display: inline;
+  white-space: normal;
+}
+
+.hero__slide2-paragraph-break {
+  display: block;
+  width: 100%;
+  height: 0.95em;
+}
+
+.hero__slide2-text-box {
+  overflow: hidden;
+}
+
 .hero__about-highlight {
   color: #8b111c;
-  font-weight: 700;
 }
 
 .hero__section-title {
@@ -997,41 +1081,32 @@
 
 .hero__slide6-title-number {
   font-family: 'Satisfy', cursive;
-  font-size: clamp(1.85rem, 8cqw, 8.5rem);
+  font-size: 6.6cqw;
   font-weight: 400;
   color: #f498a4;
 }
 
 .hero__slide6-title-text {
   font-family: 'Libre Baskerville', serif;
-  font-size: clamp(1.85rem, 6cqw, 5.6rem);
+  font-size: 5.7cqw;
   font-weight: 700;
   color: #f498a4;
 }
 
 .hero__slide6-paragraph {
-  width: min(93%, 1360px);
+  width: calc(100% - 11.25%);
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.96rem, 1.45cqw, 1.5rem);
+  font-size: 1.45cqw;
   font-weight: 400;
   color: #181818;
   line-height: 1.35;
   white-space: normal;
+  box-sizing: border-box;
+  padding: 0;
 }
 
-.hero__slide6-paragraph--fused {
-  width: min(42%, 52cqw);
-  max-width: 42%;
-  min-height: clamp(29.7rem, 66.6vh, 44.1rem);
-  padding: clamp(1.25rem, 2.7cqw, 2.2rem) clamp(0.45rem, 0.95cqw, 0.8rem);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  overflow-wrap: anywhere;
-  word-break: normal;
-  white-space: normal;
+.hero__slide6-paragraph--es {
+  font-size: inherit;
 }
 
 .hero__slide6-paragraph-group {
@@ -1051,22 +1126,8 @@
 }
 
 /* Spanish Scene 6 text is longer, so keep it inside a responsive bounded text box. */
-.hero__slide6-paragraph--es {
-  width: min(42%, 52cqw);
-  max-width: 42%;
-  min-height: clamp(29.7rem, 66.6vh, 44.1rem);
-  padding: clamp(1.25rem, 2.7cqw, 2.2rem) clamp(0.45rem, 0.95cqw, 0.8rem);
-  box-sizing: border-box;
-  font-size: clamp(0.82rem, 1.12cqw, 1.2rem);
-  line-height: 1.34;
-  white-space: normal;
-  overflow: hidden;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-
 /* Enable natural line wrapping so Spanish copy does not spill out horizontally. */
-.hero__slide6-paragraph--es .hero__slide6-paragraph-line {
+.hero__slide6-paragraph-line {
   white-space: normal;
 }
 
@@ -1075,25 +1136,19 @@
   color: #8b111c;
 }
 
-.hero__slide6-partnership-inline {
-  display: block;
-  margin-top: auto;
-  padding-top: clamp(0.95rem, 2.1cqw, 1.7rem);
-  align-self: flex-start;
-  font-family: 'Archivo Narrow', sans-serif;
-  font-size: 1em;
-  font-weight: 700;
-  color: #f498a4;
-}
-
 .hero__slide6-partnership {
+  position: absolute;
+  margin: 0;
   font-family: 'Archivo Narrow', sans-serif;
-  font-size: clamp(1.1rem, 1.35cqw, 1.6rem);
-  font-weight: 700;
+  font-size: 1.45cqw;
+  font-weight: 400;
   color: #f498a4;
   line-height: 1.2;
   white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0;
 }
+
 
 .hero__overlay-content--slide7 {
   pointer-events: none;
@@ -1118,14 +1173,14 @@
 
 .hero__slide7-title-number {
   font-family: 'Satisfy', cursive;
-  font-size: 8cqw;
+  font-size: 6.6cqw;
   font-weight: 400;
   color: #70702b;
 }
 
 .hero__slide7-title-text {
   font-family: 'Libre Baskerville', serif;
-  font-size: 6cqw;
+  font-size: 5.7cqw;
   font-weight: 700;
   color: #70702b;
 }
@@ -1134,19 +1189,32 @@
   width: calc(100% - 11.25%);
   font-family: 'Montserrat', sans-serif;
   font-size: 1.45cqw;
-  font-weight: 400;
+  font-weight: 500;
   color: #181818;
-  line-height: 1.35;
+  line-height: 1.5;
   white-space: normal;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .hero__slide7-paragraph-line {
-  display: block;
-  white-space: nowrap;
+  display: inline;
+  white-space: normal;
 }
 
 .hero__slide7-paragraph--es {
-  font-size: 1.38cqw;
+  font-size: inherit;
+}
+
+/*
+  Dedicated Scene 7 paragraph text-box:
+  - stays slide-anchored (absolute + percent position from composition coordinates)
+  - scales with viewport via cqw-driven font sizing
+  - green outline is a temporary layout/debug visual
+*/
+.hero__slide7-text-box {
+  overflow: hidden;
 }
 
 .hero__slide7-highlight {
@@ -1187,14 +1255,14 @@
 
 .hero__slide8-title-number {
   font-family: 'Satisfy', cursive;
-  font-size: 8cqw;
+  font-size: 6.6cqw;
   font-weight: 400;
   color: #f498a4;
 }
 
 .hero__slide8-title-text {
   font-family: 'Libre Baskerville', serif;
-  font-size: 6cqw;
+  font-size: 5.7cqw;
   font-weight: 700;
   color: #f498a4;
 }
@@ -1202,16 +1270,28 @@
 .hero__slide8-paragraph {
   width: calc(100% - 11.25%);
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.35cqw;
+  font-size: 1.45cqw;
   font-weight: 400;
   color: #181818;
   line-height: 1.34;
   white-space: normal;
+  box-sizing: border-box;
 }
 
 .hero__slide8-paragraph-line {
+  display: inline;
+  white-space: normal;
+}
+
+.hero__slide8-paragraph-group {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.hero__slide8-paragraph-break {
+  display: block;
+  width: 100%;
+  height: 0.95em;
 }
 
 .hero__slide8-highlight,
@@ -1225,6 +1305,7 @@
   font-size: 1.35cqw;
   line-height: 1.34;
   white-space: normal;
+  box-sizing: border-box;
 }
 
 .hero__slide8-award-line {
@@ -1235,15 +1316,25 @@
 .hero__slide8-partnership {
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1.35cqw;
-  font-weight: 700;
   color: #f498a4;
   line-height: 1.2;
   white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/*
+  Dedicated Scene 8 text boxes (paragraph, award, partnership):
+  - green border is temporary for layout/debugging
+  - overflow hidden keeps each text block bounded
+*/
+.hero__slide8-text-box {
+  overflow: hidden;
 }
 
 .hero__overlay-content--slide16 {
   pointer-events: none;
   text-align: left;
+  container-type: inline-size;
 }
 
 .hero__slide16-contact-box {
@@ -1258,7 +1349,7 @@
 .hero__slide16-contact-label,
 .hero__slide16-contact-value {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.22rem, 2cqw, 2rem);
+  font-size: clamp(1.22rem, calc(var(--slide16-font-size-cqw, 2) * 1cqw), 2rem);
   line-height: 1.3;
   white-space: nowrap;
   color: #1f1f1f;

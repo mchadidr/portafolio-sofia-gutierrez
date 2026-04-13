@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import './Hero.css'
-import HERO_TEXT_POSITIONS, { toPercentPosition } from './heroTextPositions.jsx'
+import HERO_TEXT_POSITIONS, { SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition } from './heroTextPositions.jsx'
 
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 0.42
 const HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS = 1
+const HORIZONTAL_TRANSITION_8TO9_DISTANCE_VIEWPORTS = 0.85
 const PROJECTS_NAV_OFFSET_VIEWPORTS = 0.08
 const FIRST_TRANSITION_START_DEADZONE_PX = 10
 const HORIZONTAL_TRANSITION_8TO9_START_DEADZONE_PX = 12
@@ -14,9 +15,9 @@ const FIRST_TRANSITION_UNDER_REVEAL_START = 0.03
 const FIRST_TRANSITION_UNDER_REVEAL_SETTLE_END = 0.2
 const FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH = 7
 const SCENE5_BRANCH_TRANSITION_MS = 620
-const SCENE15_TO_16_START_DEADZONE_RATIO = 0.25
+const SCENE15_TO_16_START_DEADZONE_RATIO = 0
 const SCENE15_TO_16_ENTRY_OFFSET_VH = 110
-const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 3
+const SCENE15_TO_16_TRANSITION_DISTANCE_VIEWPORTS = 1.1
 
 function Hero({ t, lang }) {
   const [firstTransitionProgress, setFirstTransitionProgress] = useState(0)
@@ -64,7 +65,6 @@ function Hero({ t, lang }) {
 
   const firstTransitionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
   const sharedCompositionBackgroundSrc = `${import.meta.env.BASE_URL}images/background.svg`
-  const sharedBranchBackdropSrc = `${import.meta.env.BASE_URL}images/backgroundB.svg`
   const sharedBackgroundDebugMode = new URLSearchParams(window.location.search).get('heroBackground') === 'red'
   const sharedBackgroundStyle = sharedBackgroundDebugMode
     ? { backgroundColor: '#d71920', backgroundImage: 'none' }
@@ -130,7 +130,7 @@ function Hero({ t, lang }) {
 
       const nextHorizontal8To9Progress = calculateProgress(
         horizontalTransition8To9Ref.current,
-        HORIZONTAL_TRANSITION_DISTANCE_VIEWPORTS,
+        HORIZONTAL_TRANSITION_8TO9_DISTANCE_VIEWPORTS,
         HORIZONTAL_TRANSITION_8TO9_START_DEADZONE_PX
       )
 
@@ -375,56 +375,42 @@ function Hero({ t, lang }) {
             <span className="hero__about-title-italic">{h.about.titleItalic}</span>
           </h2>
 
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line1)}>
-            {h.about.line1BeforeHighlight}<span className="hero__about-highlight">{h.about.line1Highlight}</span>{h.about.line1AfterHighlight}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line2)}>
-            {h.about.line2}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line3)}>
-            {h.about.line3}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line4)}>
-            {h.about.line4}
-          </p>
-
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line5)}>
-            {h.about.line5BeforeHighlight}<span className="hero__about-highlight">{h.about.line5Highlight}</span>
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line6)}>
-            <span className="hero__about-highlight">{h.about.line6Highlight}</span>
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line7)}>
-            <span className="hero__about-highlight">{h.about.line7Highlight}</span>{h.about.line7AfterHighlight}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line8)}>
-            {h.about.line8}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line9)}>
-            {h.about.line9}
-          </p>
-
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line10)}>
-            {h.about.line10BeforeHighlight}<span className="hero__about-highlight">{h.about.line10Highlight}</span>
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line11)}>
-            <span className="hero__about-highlight">{h.about.line11Highlight}</span>{h.about.line11AfterHighlight}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line12)}>
-            {h.about.line12}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line13)}>
-            {h.about.line13}
-          </p>
-
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line14)}>
-            <span className="hero__about-highlight">{h.about.line14Highlight}</span>
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line15)}>
-            <span className="hero__about-highlight">{h.about.line15Highlight}</span>{h.about.line15AfterHighlight}
-          </p>
-          <p className="hero__about-line" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay2Line16)}>
-            {h.about.line16}
+          <p
+            className="hero__slide2-paragraph hero__slide2-text-box"
+            style={{
+              ...toPercentPosition(SCENE2_TEXT_LAYOUT.textBox),
+              width: `${SCENE2_TEXT_LAYOUT.textBox.widthPercent}%`,
+              fontSize: `${SCENE2_TEXT_LAYOUT.textBox.fontSizeCqw}cqw`,
+              padding: `${SCENE2_TEXT_LAYOUT.textBox.paddingCqw}cqw`
+            }}
+          >
+            <span className="hero__slide2-paragraph-group">
+              <span className="hero__slide2-paragraph-line">{h.about.line1BeforeHighlight}<span className="hero__about-highlight">{h.about.line1Highlight}</span>{h.about.line1AfterHighlight}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line2}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line3}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line4}</span>
+            </span>
+            <span className="hero__slide2-paragraph-break" aria-hidden="true" />
+            <span className="hero__slide2-paragraph-group">
+              <span className="hero__slide2-paragraph-line">{h.about.line5BeforeHighlight}<span className="hero__about-highlight">{h.about.line5Highlight}</span></span>{' '}
+              <span className="hero__slide2-paragraph-line"><span className="hero__about-highlight">{h.about.line6Highlight}</span></span>{' '}
+              <span className="hero__slide2-paragraph-line"><span className="hero__about-highlight">{h.about.line7Highlight}</span>{h.about.line7AfterHighlight}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line8}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line9}</span>
+            </span>
+            <span className="hero__slide2-paragraph-break" aria-hidden="true" />
+            <span className="hero__slide2-paragraph-group">
+              <span className="hero__slide2-paragraph-line">{h.about.line10BeforeHighlight}<span className="hero__about-highlight">{h.about.line10Highlight}</span></span>{' '}
+              <span className="hero__slide2-paragraph-line"><span className="hero__about-highlight">{h.about.line11Highlight}</span>{h.about.line11AfterHighlight}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line12}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line13}</span>
+            </span>
+            <span className="hero__slide2-paragraph-break" aria-hidden="true" />
+            <span className="hero__slide2-paragraph-group">
+              <span className="hero__slide2-paragraph-line"><span className="hero__about-highlight">{h.about.line14Highlight}</span></span>{' '}
+              <span className="hero__slide2-paragraph-line"><span className="hero__about-highlight">{h.about.line15Highlight}</span>{h.about.line15AfterHighlight}</span>{' '}
+              <span className="hero__slide2-paragraph-line">{h.about.line16}</span>
+            </span>
           </p>
         </div>
       )
@@ -433,53 +419,107 @@ function Hero({ t, lang }) {
     if (isEducationImage) {
       return (
         <div className="hero__overlay-content hero__overlay-content--education">
+          {/* Education Section */}
           <p className="hero__section-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3TitleEducation)}>
             <span className="hero__section-bullet">•</span>
             <span>{h.education.titleEducationalBackground}</span>
           </p>
-
-          <p className="hero__body-label" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3HighSchoolLabel)}>{h.education.highSchoolLabel}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3HighSchoolValue)}>
-            {h.education.highSchoolValue}
+          <p className="hero__slide3-paragraph hero__slide3-education-text-box" style={{
+            ...toPercentPosition(SCENE3_TEXT_LAYOUT.education),
+            width: `${SCENE3_TEXT_LAYOUT.education.widthPercent}%`,
+            fontSize: `${SCENE3_TEXT_LAYOUT.education.fontSizeCqw}cqw`
+          }}>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.highSchoolLabel}</span>
+              <br/>
+              <span className="hero__slide3-paragraph-line">{h.education.highSchoolValue}</span>
+            </span>
+            <span className="hero__slide3-paragraph-break"></span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.universityLabel}</span>
+              {' '}
+              <span className="hero__slide3-paragraph-line">{h.education.universityValue1}</span>
+              <br/>
+              <span className="hero__slide3-paragraph-line">{h.education.universityValue2}</span>
+            </span>
           </p>
 
-          <p className="hero__body-label" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3UniversityLabel)}>{h.education.universityLabel}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3UniversityValue1)}>
-            {h.education.universityValue1}
-          </p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3UniversityValue2)}>
-            {h.education.universityValue2}
-          </p>
-
+          {/* Work Section */}
           <p className="hero__section-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3TitleWork)}>
             <span className="hero__section-bullet">•</span>
             <span>{h.education.titleWork}</span>
           </p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3WorkValue)}>
+          <p className="hero__slide3-paragraph hero__slide3-work-text-box" style={{
+            ...toPercentPosition(SCENE3_TEXT_LAYOUT.work),
+            width: `${SCENE3_TEXT_LAYOUT.work.widthPercent}%`,
+            fontSize: `${SCENE3_TEXT_LAYOUT.work.fontSizeCqw}cqw`
+          }}>
             {h.education.workValue}
           </p>
 
+          {/* Languages Section */}
           <p className="hero__section-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3TitleLanguages)}>
             <span className="hero__section-bullet">•</span>
             <span>{h.education.titleLanguages}</span>
           </p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3LanguageValue1)}>{h.education.languageSpanish}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3LanguageValue2)}>{h.education.languageEnglish}</p>
+          <p className="hero__slide3-paragraph hero__slide3-languages-text-box" style={{
+            ...toPercentPosition(SCENE3_TEXT_LAYOUT.languages),
+            width: `${SCENE3_TEXT_LAYOUT.languages.widthPercent}%`,
+            fontSize: `${SCENE3_TEXT_LAYOUT.languages.fontSizeCqw}cqw`
+          }}>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.languageSpanish}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.languageEnglish}</span>
+            </span>
+          </p>
 
+          {/* Skills Section - Two Columns */}
           <p className="hero__section-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3TitleSoftSkills)}>
             <span className="hero__section-bullet">•</span>
             <span>{h.education.titleSoftSkills}</span>
           </p>
+          
+          {/* Left Column Skills */}
+          <p className="hero__slide3-paragraph hero__slide3-skills-left-text-box" style={{
+            ...toPercentPosition(SCENE3_TEXT_LAYOUT.skillsLeft),
+            width: `${SCENE3_TEXT_LAYOUT.skillsLeft.widthPercent}%`,
+            fontSize: `${SCENE3_TEXT_LAYOUT.skillsLeft.fontSizeCqw}cqw`
+          }}>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillLeft1}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillLeft2}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillLeft3}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillLeft4}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillLeft5}</span>
+            </span>
+          </p>
 
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillLeft1)}>{h.education.skillLeft1}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillLeft2)}>{h.education.skillLeft2}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillLeft3)}>{h.education.skillLeft3}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillLeft4)}>{h.education.skillLeft4}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillLeft5)}>{h.education.skillLeft5}</p>
-
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillRight1)}>{h.education.skillRight1}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillRight2)}>{h.education.skillRight2}</p>
-          <p className="hero__body-text" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay3SkillRight3)}>{h.education.skillRight3}</p>
+          {/* Right Column Skills */}
+          <p className="hero__slide3-paragraph hero__slide3-skills-right-text-box" style={{
+            ...toPercentPosition(SCENE3_TEXT_LAYOUT.skillsRight),
+            width: `${SCENE3_TEXT_LAYOUT.skillsRight.widthPercent}%`,
+            fontSize: `${SCENE3_TEXT_LAYOUT.skillsRight.fontSizeCqw}cqw`
+          }}>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillRight1}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillRight2}</span>
+            </span>
+            <span className="hero__slide3-paragraph-group">
+              <span className="hero__slide3-paragraph-line">{h.education.skillRight3}</span>
+            </span>
+          </p>
 
           <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software1), display: 'none' }}>{h.education.software1}</p>
           <p className="hero__software-text" style={{ ...toPercentPosition(HERO_TEXT_POSITIONS.overlay3Software2), display: 'none' }}>{h.education.software2}</p>
@@ -538,7 +578,7 @@ function Hero({ t, lang }) {
     }
 
     if (isSlide6Image) {
-      const slide6ParagraphClass = `hero__slide6-paragraph hero__slide6-paragraph--fused${lang === 'es' ? ' hero__slide6-paragraph--es' : ''}`
+      const slide6ParagraphClass = `hero__slide6-paragraph${lang === 'es' ? ' hero__slide6-paragraph--es' : ''}`
 
       return (
         <div className="hero__overlay-content hero__overlay-content--slide6">
@@ -557,7 +597,14 @@ function Hero({ t, lang }) {
             </button>
           </h2>
 
-          <p className={slide6ParagraphClass} style={toPercentPosition(HERO_TEXT_POSITIONS.overlay6Paragraph1)}>
+          <p
+            className={slide6ParagraphClass}
+            style={{
+              ...toPercentPosition(SCENE6_TEXT_LAYOUT.paragraph),
+              width: `${SCENE6_TEXT_LAYOUT.paragraph.widthPercent}%`,
+              fontSize: `${SCENE6_TEXT_LAYOUT.paragraph.fontSizeCqw}cqw`
+            }}
+          >
             <span className="hero__slide6-paragraph-group">
               {h.slide6.paragraph1Line1BeforeHighlight}<span className="hero__slide6-highlight">{h.slide6.paragraph1Line1Highlight1}</span>{h.slide6.paragraph1Line1Middle}<span className="hero__slide6-highlight">{h.slide6.paragraph1Line1Highlight2}</span>{' '}
               <span className="hero__slide6-highlight">{h.slide6.paragraph1Line2Highlight}</span>{' '}
@@ -577,7 +624,16 @@ function Hero({ t, lang }) {
               <span className="hero__slide6-highlight">{h.slide6.paragraph4Line2Highlight}</span>{' '}
               <span className="hero__slide6-highlight">{h.slide6.paragraph4Line3Highlight}</span>
             </span>
-            <span className="hero__slide6-partnership-inline">{h.slide6.partnership}</span>
+          </p>
+
+          <p
+            className="hero__slide6-partnership"
+            style={{
+              ...toPercentPosition(SCENE6_TEXT_LAYOUT.partnership),
+              fontSize: `${SCENE6_TEXT_LAYOUT.partnership.fontSizeCqw}cqw`
+            }}
+          >
+            {h.slide6.partnership}
           </p>
         </div>
       )
@@ -603,10 +659,18 @@ function Hero({ t, lang }) {
             </button>
           </h2>
 
-          <p className={slide7ParagraphClass} style={toPercentPosition(HERO_TEXT_POSITIONS.overlay7Paragraph)}>
-            <span className="hero__slide7-paragraph-line"><span className="hero__slide7-highlight">{h.slide7.paragraphLine1Highlight}</span>{h.slide7.paragraphLine1AfterHighlight}</span>
-            <span className="hero__slide7-paragraph-line">{h.slide7.paragraphLine2}</span>
-            <span className="hero__slide7-paragraph-line">{h.slide7.paragraphLine3}</span>
+          <p
+            className={`${slide7ParagraphClass} hero__slide7-text-box`}
+            style={{
+              ...toPercentPosition(SCENE7_TEXT_LAYOUT.textBox),
+              width: `${SCENE7_TEXT_LAYOUT.textBox.widthPercent}%`,
+              fontSize: `${SCENE7_TEXT_LAYOUT.textBox.fontSizeCqw}cqw`,
+              padding: `${SCENE7_TEXT_LAYOUT.textBox.paddingCqw}cqw`
+            }}
+          >
+            <span className="hero__slide7-paragraph-line"><span className="hero__slide7-highlight">{h.slide7.paragraphLine1Highlight}</span>{h.slide7.paragraphLine1AfterHighlight}</span>{' '}
+            <span className="hero__slide7-paragraph-line">{h.slide7.paragraphLine2}</span>{' '}
+            <span className="hero__slide7-paragraph-line">{h.slide7.paragraphLine3}</span>{' '}
             <span className="hero__slide7-paragraph-line">{h.slide7.paragraphLine4}</span>
           </p>
 
@@ -618,6 +682,10 @@ function Hero({ t, lang }) {
     }
 
     if (isSlide8Image) {
+      const scene8SharedX = SCENE8_TEXT_LAYOUT.paragraph.x
+      const scene8AwardY = SCENE8_TEXT_LAYOUT.paragraph.y + SCENE8_TEXT_LAYOUT.award.offsetY
+      const scene8PartnershipY = SCENE8_TEXT_LAYOUT.paragraph.y + SCENE8_TEXT_LAYOUT.partnership.offsetY
+
       return (
         <div className="hero__overlay-content hero__overlay-content--slide8">
           <h2 className="hero__slide8-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Title)}>
@@ -635,31 +703,57 @@ function Hero({ t, lang }) {
             </button>
           </h2>
 
-          <p className="hero__slide8-paragraph" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Paragraph1)}>
-            <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line1Highlight}</span></span>
-            <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line2Highlight}</span></span>
-            <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line3Highlight}</span></span>
+          <p
+            className="hero__slide8-paragraph hero__slide8-text-box"
+            style={{
+              ...toPercentPosition({ x: scene8SharedX, y: SCENE8_TEXT_LAYOUT.paragraph.y }),
+              width: `${SCENE8_TEXT_LAYOUT.paragraph.widthPercent}%`,
+              fontSize: `${SCENE8_TEXT_LAYOUT.paragraph.fontSizeCqw}cqw`,
+              padding: `${SCENE8_TEXT_LAYOUT.paragraph.paddingCqw}cqw`
+            }}
+          >
+            <span className="hero__slide8-paragraph-group">
+              <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line1Highlight}</span></span>{' '}
+              <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line2Highlight}</span></span>{' '}
+              <span className="hero__slide8-paragraph-line"><span className="hero__slide8-highlight">{h.slide8.paragraph1Line3Highlight}</span></span>
+            </span>
+            <span className="hero__slide8-paragraph-break" aria-hidden="true" />
+            <span className="hero__slide8-paragraph-group">
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line1}</span>{' '}
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line2}</span>{' '}
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line3}</span>{' '}
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line4}</span>{' '}
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line5}</span>
+            </span>
+            <span className="hero__slide8-paragraph-break" aria-hidden="true" />
+            <span className="hero__slide8-paragraph-group">
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph3Line1}</span>{' '}
+              <span className="hero__slide8-paragraph-line">{h.slide8.paragraph3Line2}</span>
+            </span>
           </p>
 
-          <p className="hero__slide8-paragraph" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Paragraph2)}>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line1}</span>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line2}</span>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line3}</span>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line4}</span>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph2Line5}</span>
-          </p>
-
-          <p className="hero__slide8-paragraph" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Paragraph3)}>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph3Line1}</span>
-            <span className="hero__slide8-paragraph-line">{h.slide8.paragraph3Line2}</span>
-          </p>
-
-          <p className="hero__slide8-award" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Award)}>
+          <p
+            className="hero__slide8-award hero__slide8-text-box"
+            style={{
+              ...toPercentPosition({ x: scene8SharedX, y: scene8AwardY }),
+              width: `${SCENE8_TEXT_LAYOUT.award.widthPercent}%`,
+              fontSize: `${SCENE8_TEXT_LAYOUT.award.fontSizeCqw}cqw`,
+              padding: `${SCENE8_TEXT_LAYOUT.award.paddingCqw}cqw`
+            }}
+          >
             <span className="hero__slide8-award-line">{h.slide8.awardLine1}</span>
             <span className="hero__slide8-award-line">{h.slide8.awardLine2}</span>
           </p>
 
-          <p className="hero__slide8-partnership" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay8Partnership)}>
+          <p
+            className="hero__slide8-partnership hero__slide8-text-box"
+            style={{
+              ...toPercentPosition({ x: scene8SharedX, y: scene8PartnershipY }),
+              width: `${SCENE8_TEXT_LAYOUT.partnership.widthPercent}%`,
+              fontSize: `${SCENE8_TEXT_LAYOUT.partnership.fontSizeCqw}cqw`,
+              padding: `${SCENE8_TEXT_LAYOUT.partnership.paddingCqw}cqw`
+            }}
+          >
             {h.slide8.partnership}
           </p>
         </div>
@@ -667,21 +761,35 @@ function Hero({ t, lang }) {
     }
 
     if (isContactImage) {
+      const emailBoxStyle = {
+        ...toPercentPosition({ x: SCENE16_TEXT_LAYOUT.email.x, y: SCENE16_TEXT_LAYOUT.email.y }),
+        '--slide16-font-size-cqw': SCENE16_TEXT_LAYOUT.email.fontSizeCqw
+      }
+      const phoneBoxStyle = {
+        ...toPercentPosition({ x: SCENE16_TEXT_LAYOUT.phone.x, y: SCENE16_TEXT_LAYOUT.phone.y }),
+        '--slide16-font-size-cqw': SCENE16_TEXT_LAYOUT.phone.fontSizeCqw
+      }
+      const socialBoxStyle = {
+        top: `${(SCENE16_TEXT_LAYOUT.social.y / 900) * 100}%`,
+        right: `${(SCENE16_TEXT_LAYOUT.social.right / 1600) * 100}%`,
+        '--slide16-font-size-cqw': SCENE16_TEXT_LAYOUT.social.fontSizeCqw
+      }
+
       return (
         <div className="hero__overlay-content hero__overlay-content--slide16">
-          <p className="hero__slide16-contact-box" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay16EmailBox)}>
+          <p className="hero__slide16-contact-box" style={emailBoxStyle}>
             <span className="hero__slide16-contact-label">{h.slide16.emailLabel}</span>
             <a className="hero__slide16-contact-value" href={`mailto:${h.slide16.emailValue}`}>
               {h.slide16.emailValue}
             </a>
           </p>
 
-          <p className="hero__slide16-contact-box" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay16PhoneBox)}>
+          <p className="hero__slide16-contact-box" style={phoneBoxStyle}>
             <span className="hero__slide16-contact-label">{h.slide16.phoneLabel}</span>
             <span className="hero__slide16-contact-value">{h.slide16.phoneValue}</span>
           </p>
 
-          <p className="hero__slide16-contact-box" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay16SocialBox)}>
+          <p className="hero__slide16-contact-box" style={socialBoxStyle}>
             <span className="hero__slide16-contact-label">{h.slide16.socialLabel}</span>
             <a
               className="hero__slide16-contact-value"
@@ -708,12 +816,22 @@ function Hero({ t, lang }) {
     const thirdSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/3es.svg`
       : `${import.meta.env.BASE_URL}images/3.svg`
+    const fourthSceneImageSrc = lang === 'es'
+      ? `${import.meta.env.BASE_URL}images/4es.svg`
+      : `${import.meta.env.BASE_URL}images/4.svg`
+    const ninthSceneImageSrc = lang === 'es'
+      ? `${import.meta.env.BASE_URL}images/9es.svg`
+      : `${import.meta.env.BASE_URL}images/9.svg`
     const seventeenthSceneImageSrc = `${import.meta.env.BASE_URL}images/17.svg`
     const defaultImageSrc = shouldUseSvgImage
       ? (imageNumber === 1
         ? firstSceneImageSrc
         : imageNumber === 3
           ? thirdSceneImageSrc
+          : imageNumber === 4
+            ? fourthSceneImageSrc
+            : imageNumber === 9
+              ? ninthSceneImageSrc
           : imageNumber === 17
             ? seventeenthSceneImageSrc
             : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`)
@@ -745,7 +863,15 @@ function Hero({ t, lang }) {
           src={sceneForegroundSrc}
           alt={formatTemplate(h.templates.featuredWorkAlt, { number: imageNumber })}
           loading="lazy"
+          onLoad={() => {
+            if (imageNumber === 8) {
+              console.log('✓ Scene 8 image loaded successfully:', sceneForegroundSrc)
+            }
+          }}
           onError={(event) => {
+            if (imageNumber === 8) {
+              console.log('✗ Scene 8 image failed to load:', sceneForegroundSrc)
+            }
             if (isCompositionFixScene && event.currentTarget.src !== imageSrc) {
               // Temporary fallback until scene-specific foreground SVG files are available.
               event.currentTarget.onerror = null
@@ -795,12 +921,12 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene5b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
+                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
                 />
 
                 <div className="hero__scene5b-canvas">
                   {renderScene(5, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/5B.svg`,
+                    customImageSrc: `${import.meta.env.BASE_URL}images/5b.svg`,
                     customSlideLabel: '5B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -843,12 +969,12 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene6b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
+                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
                 />
 
                 <div className="hero__scene6b-canvas">
                   {renderScene(6, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/6B.svg`,
+                    customImageSrc: `${import.meta.env.BASE_URL}images/6b.svg`,
                     customSlideLabel: '6B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -891,12 +1017,12 @@ function Hero({ t, lang }) {
                 <div
                   className="hero__scene7b-backdrop"
                   aria-hidden="true"
-                  style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
+                  style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
                 />
 
                 <div className="hero__scene7b-canvas">
                   {renderScene(7, {
-                    customImageSrc: `${import.meta.env.BASE_URL}images/7B.svg`,
+                    customImageSrc: `${import.meta.env.BASE_URL}images/7b.svg`,
                     customSlideLabel: '7B',
                     hideOverlay: true,
                     hideSlideIndex: true
@@ -937,12 +1063,12 @@ function Hero({ t, lang }) {
             <div
               className="hero__scene8b-backdrop"
               aria-hidden="true"
-              style={{ backgroundImage: `url(${sharedBranchBackdropSrc})` }}
+              style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
             />
 
             <div className="hero__scene8b-canvas">
               {renderScene(8, {
-                customImageSrc: `${import.meta.env.BASE_URL}images/8B.svg`,
+                customImageSrc: `${import.meta.env.BASE_URL}images/8b.svg`,
                 customSlideLabel: '8B',
                 hideOverlay: true,
                 hideSlideIndex: true
@@ -1091,7 +1217,7 @@ function Hero({ t, lang }) {
 
       {renderScene8Branch()}
 
-      <section className="hero__horizontal-transition" ref={horizontalTransition8To9Ref} aria-label={h.aria.scene8To9Transition}>
+      <section className="hero__horizontal-transition hero__horizontal-transition--scene8to9" ref={horizontalTransition8To9Ref} aria-label={h.aria.scene8To9Transition}>
         <div className="hero__horizontal-transition-stage">
           {/* Scene 8 exits to the left as scroll progresses. */}
           <div
