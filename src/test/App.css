@@ -9,3 +9,10 @@
   display: flex;
   flex-direction: column;
 }
+
+/* Test-tree only: put mobile display overrides inside this scope. */
+@media (max-width: 767px) {
+  .app--test-mobile .main-content--test {
+    overflow-x: hidden;
+  }
+}

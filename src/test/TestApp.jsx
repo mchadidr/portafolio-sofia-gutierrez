@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import MobileBlocker from './components/MobileBlocker'
 import { translations } from './translations.jsx'
 import './App.css'
 
@@ -29,14 +28,10 @@ function TestApp() {
     document.title = `${t.meta.title} (Test)`
   }, [lang, t.meta.title])
 
-  if (isMobile) {
-    return <MobileBlocker t={t} />
-  }
-
   return (
-    <div className="app">
+    <div className={`app app--test${isMobile ? ' app--test-mobile' : ''}`}>
       <Navbar t={t} lang={lang} setLang={setLang} />
-      <main className="main-content">
+      <main className="main-content main-content--test">
         <Hero t={t} lang={lang} />
       </main>
     </div>

@@ -219,6 +219,12 @@
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .hero__paper-transition--first .hero__scene-layer--first-top {
+    align-items: center;
+  }
+}
+
 .hero__scene7-branch-base {
   position: relative;
 }
