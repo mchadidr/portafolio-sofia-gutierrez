@@ -854,7 +854,7 @@ function Hero({ t, lang }) {
           className={`hero__image-layer${isCompositionFixScene ? ' hero__image-layer--composition-foreground' : ''}`}
           src={initialSceneForegroundSrc}
           alt={formatTemplate(h.templates.featuredWorkAlt, { number: imageNumber })}
-          loading="lazy"
+          loading={imageNumber === 1 ? 'eager' : 'lazy'}
           onLoad={() => {
             if (imageNumber === 8) {
               console.log('✓ Scene 8 image loaded successfully:', initialSceneForegroundSrc)
