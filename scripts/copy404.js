@@ -1,10 +1,12 @@
-// scripts/copy404.js
-// Copies dist/index.html to dist/404.html for SPA fallback (cross-platform)
-const fs = require('fs');
-const path = require('path');
+// scripts/copy404.js (ESM)
+// Copies dist/index.html to dist/404.html for SPA fallback (cross-platform, ESM)
+import { copyFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const src = path.join(__dirname, '../dist/index.html');
-const dest = path.join(__dirname, '../dist/404.html');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const src = join(__dirname, '../dist/index.html');
+const dest = join(__dirname, '../dist/404.html');
 
-fs.copyFileSync(src, dest);
+copyFileSync(src, dest);
 console.log('Copied dist/index.html to dist/404.html');
