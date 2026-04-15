@@ -178,8 +178,6 @@ const EN_TRANSLATIONS = {
     slide16: {
       emailLabel: 'Email Address',
       emailValue: 'sofiagutierrezbh18@gmail.com',
-      phoneLabel: 'Phone Number',
-      phoneValue: '+57 (316) 616-7911',
       socialLabel: 'Social Media',
       socialValue: '@_sofiagutierrez1'
     },
@@ -364,7 +362,6 @@ const ES_TRANSLATIONS = {
     slide16: {
       ...EN_TRANSLATIONS.hero.slide16,
       emailLabel: 'Correo electrónico',
-      phoneLabel: 'Número de teléfono',
       socialLabel: 'Redes sociales'
     },
     slide17: {

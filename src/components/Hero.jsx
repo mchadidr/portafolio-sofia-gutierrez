@@ -710,10 +710,7 @@ function Hero({ t, lang }) {
             </a>
           </p>
 
-          <p className="hero__slide16-contact-box" style={phoneBoxStyle}>
-            <span className="hero__slide16-contact-label">{h.slide16.phoneLabel}</span>
-            <span className="hero__slide16-contact-value">{h.slide16.phoneValue}</span>
-          </p>
+          {/* Phone number removed as requested */}
 
           <p className="hero__slide16-contact-box" style={socialBoxStyle}>
             <span className="hero__slide16-contact-label">{h.slide16.socialLabel}</span>
