@@ -1,7 +1,9 @@
-import { useMemo, useState, useRef, useEffect } from 'react'
+
+import { translations } from '../translations.jsx'
 import './CvPage.css'
 
 function CvPage({ lang }) {
+  const t = translations[lang] ?? translations.en
   const basePath = import.meta.env.BASE_URL
   const backgroundSrc = `${basePath}images/background.svg`
   // Use CV.svg for Spanish, resume.svg for English
@@ -107,6 +109,9 @@ function CvPage({ lang }) {
             </>
           )}
         </div>
+        <footer className="cv-page__copyright" style={{textAlign: 'center', marginTop: '2rem', fontSize: '0.95em', color: '#888'}}>
+          {t.hero.slide17?.copyright}
+        </footer>
       </section>
     </>
   )
