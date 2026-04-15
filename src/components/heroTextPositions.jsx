@@ -210,21 +210,21 @@ const SCENE3_TEXT_LAYOUT = {
 const SCENE16_TEXT_LAYOUT = {
   email: {
     anchor: 'left',
-    x: 98,
-    y: 538,
+    x: 270,
+    y: 530,
     fontSizeCqw: 2
   },
   phone: {
     anchor: 'left',
-    x: 680,
+    x: 400,
     y: 538,
     fontSizeCqw: 2
   },
   social: {
     // Keep the same visual position as x:1100 by anchoring to the right edge.
     anchor: 'right',
-    right: 200,
-    y: 538,
+    right: 466,
+    y: 530,
     fontSizeCqw: 2
   }
 }
