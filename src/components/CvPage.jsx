@@ -1,4 +1,4 @@
-
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { translations } from '../translations.jsx'
 import './CvPage.css'
 
@@ -88,6 +88,9 @@ function CvPage({ lang }) {
             tabIndex={0}
             onClick={handleImageClick}
           />
+          <footer className="cv-page__copyright" style={{textAlign: 'center', marginTop: '1.2rem', fontSize: '0.97em', color: '#111', fontWeight: 500}}>
+            {t.hero.slide17?.copyright}
+          </footer>
           {showPopup && (
             <>
               <div
@@ -109,9 +112,6 @@ function CvPage({ lang }) {
             </>
           )}
         </div>
-        <footer className="cv-page__copyright" style={{textAlign: 'center', marginTop: '2rem', fontSize: '0.95em', color: '#888'}}>
-          {t.hero.slide17?.copyright}
-        </footer>
       </section>
     </>
   )
