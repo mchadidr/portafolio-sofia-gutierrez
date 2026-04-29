@@ -32,18 +32,22 @@ const EN_TRANSLATIONS = {
       scene5Branch: 'Scene 5 local detail branch',
       scene6Branch: 'Scene 6 local detail branch',
       scene7Branch: 'Scene 7 local detail branch',
+      scene9Branch: 'Scene 9 local detail branch',
       openScene5Details: 'Open Scene 5 details',
       openScene6Details: 'Open Scene 6 details',
       openScene7Details: 'Open Scene 7 details',
       openScene8Details: 'Open Scene 8 details',
+      openScene9Details: 'Open Scene 9 details',
       closeScene5Details: 'Close Scene 5 details',
       closeScene6Details: 'Close Scene 6 details',
       closeScene7Details: 'Close Scene 7 details',
       closeScene8Details: 'Close Scene 8 details',
+      closeScene9Details: 'Close Scene 9 details',
       scene5DetailsDialog: 'Scene 5 details',
       scene6DetailsDialog: 'Scene 6 details',
       scene7DetailsDialog: 'Scene 7 details',
-      scene8DetailsDialog: 'Scene 8 details'
+      scene8DetailsDialog: 'Scene 8 details',
+      scene9DetailsDialog: 'Scene 9 details'
     },
     templates: {
       slideIndex: 'Slide {label}',
@@ -175,6 +179,15 @@ const EN_TRANSLATIONS = {
       awardLine2: '2025-03',
       partnership: 'Partnership: Jimena Rojas'
     },
+    slide9: {
+      titleNumber: '5.',
+      titleText: 'ToyCycles',
+      paragraphLine1Highlight: 'An early childhood stimulation toy system made from recycled PET plastic',
+      paragraphLine1AfterHighlight: ', transforming waste into tools for play, learning, and creativity. Through modular pieces, children can build their own characters while developing cognitive, emotional, and sensory skills.',
+      paragraphLine2: '',
+      awardLine1: 'Best project from the LCI Veritas product design school 2026-01',
+      awardLine2: ''
+    },
     slide16: {
       emailLabel: 'Email Address',
       emailValue: 'sofiagutierrezbh18@gmail.com',
@@ -182,6 +195,12 @@ const EN_TRANSLATIONS = {
       socialValue: '@_sofiagutierrez1'
     },
     slide17: {
+      emailLabel: 'Email Address',
+      emailValue: 'sofiagutierrezbh18@gmail.com',
+      socialLabel: 'Social Media',
+      socialValue: '@_sofiagutierrez1'
+    },
+    slide18: {
       designedBy: 'Designed by: Sofía Gutiérrez Bohórquez',
       websiteBy: 'Website by: Miguel Chadid',
       copyright: '© 2026 Sofía Gutiérrez. All rights reserved.'
@@ -228,18 +247,22 @@ const ES_TRANSLATIONS = {
       scene5Branch: 'Rama local de detalle de escena 5',
       scene6Branch: 'Rama local de detalle de escena 6',
       scene7Branch: 'Rama local de detalle de escena 7',
+      scene9Branch: 'Rama local de detalle de escena 9',
       openScene5Details: 'Abrir detalles de la escena 5',
       openScene6Details: 'Abrir detalles de la escena 6',
       openScene7Details: 'Abrir detalles de la escena 7',
       openScene8Details: 'Abrir detalles de la escena 8',
+      openScene9Details: 'Abrir detalles de la escena 9',
       closeScene5Details: 'Cerrar detalles de la escena 5',
       closeScene6Details: 'Cerrar detalles de la escena 6',
       closeScene7Details: 'Cerrar detalles de la escena 7',
       closeScene8Details: 'Cerrar detalles de la escena 8',
+      closeScene9Details: 'Cerrar detalles de la escena 9',
       scene5DetailsDialog: 'Detalles de la escena 5',
       scene6DetailsDialog: 'Detalles de la escena 6',
       scene7DetailsDialog: 'Detalles de la escena 7',
-      scene8DetailsDialog: 'Detalles de la escena 8'
+      scene8DetailsDialog: 'Detalles de la escena 8',
+      scene9DetailsDialog: 'Detalles de la escena 9'
     },
     templates: {
       ...EN_TRANSLATIONS.hero.templates,
@@ -359,13 +382,27 @@ const ES_TRANSLATIONS = {
       awardLine2: '2025-03',
       partnership: 'Colaboración: Jimena Rojas'
     },
+    slide9: {
+      titleNumber: '5.',
+      titleText: 'ToyCycles',
+      paragraphLine1Highlight: 'Un sistema de juguetes de estimulación temprana elaborado a partir de plástico PET reciclado',
+      paragraphLine1AfterHighlight: ', que transforma residuos en herramientas para el juego, el aprendizaje y la creatividad. A través de piezas modulares, los niños pueden construir sus propios personajes mientras desarrollan habilidades cognitivas, emocionales y sensoriales.',
+      paragraphLine2: '',
+      awardLine1: 'Mejor proyecto de la escuela de diseño de producto de LCI Veritas 2026-01',
+      awardLine2: ''
+    },
     slide16: {
       ...EN_TRANSLATIONS.hero.slide16,
       emailLabel: 'Correo electrónico',
       socialLabel: 'Redes sociales'
     },
     slide17: {
-      ...EN_TRANSLATIONS.hero.slide17,
+      ...EN_TRANSLATIONS.hero.slide16,
+      emailLabel: 'Correo electrónico',
+      socialLabel: 'Redes sociales'
+    },
+    slide18: {
+      ...EN_TRANSLATIONS.hero.slide18,
       designedBy: 'Diseñado por: Sofía Gutiérrez Bohórquez',
       websiteBy: 'Website desarrollado por: Miguel Chadid',
       copyright: '© 2026 Sofía Gutiérrez. Todos los derechos reservados.'

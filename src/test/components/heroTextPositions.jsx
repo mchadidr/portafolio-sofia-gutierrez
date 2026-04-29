@@ -89,6 +89,7 @@ const HERO_TEXT_POSITIONS = {
   overlay7Partnership: { x: 30, y: 825 },
 
   overlay8Title: { x: 90, y: 58 },
+  overlay9Title: { x: 90, y: 58 },
   overlay8Paragraph1: { x:105, y: 248 },
   overlay8Paragraph2: { x: 105, y: 340 },
   overlay8Paragraph3: { x: 105, y: 495 },
@@ -150,6 +151,24 @@ const SCENE8_TEXT_LAYOUT = {
     widthPercent: 47,
     fontSizeCqw: 1.35,
     paddingCqw: 0
+  }
+}
+
+// Centralized Scene 9 text-box controls.
+// Mirror the Scene 8 pattern so paragraph and award boxes can be repositioned/resized here only.
+const SCENE9_TEXT_LAYOUT = {
+  paragraph: {
+    x: 105,
+    y: 248,
+    widthPercent: 47,
+    fontSizeCqw: 1.45,
+    paddingCqw: 1.1
+  },
+  award: {
+    offsetY: 285,
+    widthPercent: 47,
+    fontSizeCqw: 1.35,
+    paddingCqw: 1.1
   }
 }
 
@@ -236,6 +255,6 @@ function toPercentPosition({ x, y }) {
   }
 }
 
-export { HERO_COMPOSITION_WIDTH, HERO_COMPOSITION_HEIGHT, SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition }
+export { HERO_COMPOSITION_WIDTH, HERO_COMPOSITION_HEIGHT, SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE9_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition }
 
 export default HERO_TEXT_POSITIONS

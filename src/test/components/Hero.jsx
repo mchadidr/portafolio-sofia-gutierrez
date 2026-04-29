@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Hero.css'
-import HERO_TEXT_POSITIONS, { SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition } from './heroTextPositions.jsx'
+import HERO_TEXT_POSITIONS, { SCENE2_TEXT_LAYOUT, SCENE3_TEXT_LAYOUT, SCENE6_TEXT_LAYOUT, SCENE7_TEXT_LAYOUT, SCENE8_TEXT_LAYOUT, SCENE9_TEXT_LAYOUT, SCENE16_TEXT_LAYOUT, toPercentPosition } from './heroTextPositions.jsx'
 
 const FIRST_TRANSITION_DISTANCE_VIEWPORTS = 0.42
 const ABOUT_NAV_OFFSET_VIEWPORTS = 0.08
@@ -74,7 +74,9 @@ function Hero({ t, lang }) {
   const [isScene8BOpen, setIsScene8BOpen] = useState(false)
   const [isScene8BMounted, setIsScene8BMounted] = useState(false)
   const [isScene8BClosing, setIsScene8BClosing] = useState(false)
-  const [debugScrollY, setDebugScrollY] = useState(0)
+  const [isScene9BOpen, setIsScene9BOpen] = useState(false)
+  const [isScene9BMounted, setIsScene9BMounted] = useState(false)
+  const [isScene9BClosing, setIsScene9BClosing] = useState(false)
 
   const firstTransitionRef = useRef(null)
   const horizontalTransitionRef = useRef(null)
@@ -84,17 +86,20 @@ function Hero({ t, lang }) {
   const isScene6BActiveRef = useRef(false)
   const isScene7BActiveRef = useRef(false)
   const isScene8BActiveRef = useRef(false)
+  const isScene9BActiveRef = useRef(false)
   const scene5BCloseTimerRef = useRef(0)
   const scene6BCloseTimerRef = useRef(0)
   const scene7BCloseTimerRef = useRef(0)
   const scene8BCloseTimerRef = useRef(0)
+  const scene9BCloseTimerRef = useRef(0)
 
   useEffect(() => {
     isScene5BActiveRef.current = isScene5BMounted || isScene5BClosing
     isScene6BActiveRef.current = isScene6BMounted || isScene6BClosing
     isScene7BActiveRef.current = isScene7BMounted || isScene7BClosing
     isScene8BActiveRef.current = isScene8BMounted || isScene8BClosing
-  }, [isScene5BMounted, isScene5BClosing, isScene6BMounted, isScene6BClosing, isScene7BMounted, isScene7BClosing, isScene8BMounted, isScene8BClosing])
+    isScene9BActiveRef.current = isScene9BMounted || isScene9BClosing
+  }, [isScene5BMounted, isScene5BClosing, isScene6BMounted, isScene6BClosing, isScene7BMounted, isScene7BClosing, isScene8BMounted, isScene8BClosing, isScene9BMounted, isScene9BClosing])
 
   const imagePaths = Array.from({ length: 17 }, (_, index) => {
     const imageNumber = index + 1
@@ -151,7 +156,7 @@ function Hero({ t, lang }) {
     const updateTransitionProgress = () => {
       animationFrameId = 0
 
-      if (isScene5BActiveRef.current || isScene6BActiveRef.current || isScene7BActiveRef.current || isScene8BActiveRef.current) {
+      if (isScene5BActiveRef.current || isScene6BActiveRef.current || isScene7BActiveRef.current || isScene8BActiveRef.current || isScene9BActiveRef.current) {
         return
       }
 
@@ -183,11 +188,10 @@ function Hero({ t, lang }) {
       setStableProgress(setHorizontalTransitionProgress, nextHorizontalProgress)
       setStableProgress(setHorizontalTransition8To9Progress, nextHorizontal8To9Progress)
       setStableProgress(setScene15To16TransitionProgress, nextScene15To16Progress)
-      setDebugScrollY(Math.round(window.scrollY || 0))
     }
 
     const handleScroll = () => {
-      if (isScene5BActiveRef.current || isScene6BActiveRef.current || isScene7BActiveRef.current || isScene8BActiveRef.current) {
+      if (isScene5BActiveRef.current || isScene6BActiveRef.current || isScene7BActiveRef.current || isScene8BActiveRef.current || isScene9BActiveRef.current) {
         return
       }
 
@@ -213,7 +217,7 @@ function Hero({ t, lang }) {
   }, [])
 
   useEffect(() => {
-    if ((!isScene5BMounted && !isScene5BClosing) && (!isScene6BMounted && !isScene6BClosing) && (!isScene7BMounted && !isScene7BClosing) && (!isScene8BMounted && !isScene8BClosing)) {
+    if ((!isScene5BMounted && !isScene5BClosing) && (!isScene6BMounted && !isScene6BClosing) && (!isScene7BMounted && !isScene7BClosing) && (!isScene8BMounted && !isScene8BClosing) && (!isScene9BMounted && !isScene9BClosing)) {
       return
     }
 
@@ -231,7 +235,7 @@ function Hero({ t, lang }) {
       document.documentElement.style.overflow = previousHtmlOverflow
       document.body.style.touchAction = previousBodyTouchAction
     }
-  }, [isScene5BMounted, isScene5BClosing, isScene6BMounted, isScene6BClosing, isScene7BMounted, isScene7BClosing, isScene8BMounted, isScene8BClosing])
+  }, [isScene5BMounted, isScene5BClosing, isScene6BMounted, isScene6BClosing, isScene7BMounted, isScene7BClosing, isScene8BMounted, isScene8BClosing, isScene9BMounted, isScene9BClosing])
 
   useEffect(() => {
     return () => {
@@ -249,6 +253,10 @@ function Hero({ t, lang }) {
 
       if (scene8BCloseTimerRef.current) {
         window.clearTimeout(scene8BCloseTimerRef.current)
+      }
+
+      if (scene9BCloseTimerRef.current) {
+        window.clearTimeout(scene9BCloseTimerRef.current)
       }
     }
   }, [])
@@ -377,6 +385,36 @@ function Hero({ t, lang }) {
     }, SCENE5_BRANCH_TRANSITION_MS)
   }
 
+  const openScene9B = () => {
+    if (scene9BCloseTimerRef.current) {
+      window.clearTimeout(scene9BCloseTimerRef.current)
+      scene9BCloseTimerRef.current = 0
+    }
+
+    setIsScene9BMounted(true)
+    setIsScene9BClosing(false)
+
+    window.requestAnimationFrame(() => {
+      setIsScene9BOpen(true)
+    })
+  }
+
+  const closeScene9B = () => {
+    if (scene9BCloseTimerRef.current) {
+      window.clearTimeout(scene9BCloseTimerRef.current)
+      scene9BCloseTimerRef.current = 0
+    }
+
+    setIsScene9BClosing(true)
+    setIsScene9BOpen(false)
+
+    scene9BCloseTimerRef.current = window.setTimeout(() => {
+      setIsScene9BClosing(false)
+      setIsScene9BMounted(false)
+      scene9BCloseTimerRef.current = 0
+    }, SCENE5_BRANCH_TRANSITION_MS)
+  }
+
   const renderOverlayContent = (imageNumber) => {
     const isPrimaryImage = imageNumber === 1
     const isAboutImage = imageNumber === 2
@@ -385,6 +423,7 @@ function Hero({ t, lang }) {
     const isSlide6Image = imageNumber === 6
     const isSlide7Image = imageNumber === 7
     const isSlide8Image = imageNumber === 8
+    const isSlide9Image = imageNumber === 9
     const isContactImage = imageNumber === 16
     const isCreditsImage = imageNumber === 17
     const readMoreLabel = lang === 'es' ? 'Más detalles' : 'Read more'
@@ -843,12 +882,79 @@ function Hero({ t, lang }) {
       )
     }
 
+    if (
+      isSlide9Image &&
+      h.slide9 &&
+      (h.slide9.paragraphLine1Highlight || h.slide9.paragraphLine1AfterHighlight || h.slide9.paragraphLine2 || h.slide9.awardLine1 || h.slide9.awardLine2)
+    ) {
+      const scene9SharedX = SCENE9_TEXT_LAYOUT.paragraph.x
+      const scene9AwardY = SCENE9_TEXT_LAYOUT.paragraph.y + SCENE9_TEXT_LAYOUT.award.offsetY
+
+      return (
+        <div className="hero__overlay-content hero__overlay-content--slide9">
+          {(h.slide9.titleNumber || h.slide9.titleText) && (
+            <h2 className="hero__slide9-title" style={toPercentPosition(HERO_TEXT_POSITIONS.overlay9Title)}>
+              {h.slide9.titleNumber ? <span className="hero__slide9-title-number">{h.slide9.titleNumber}</span> : null}
+              {h.slide9.titleText ? <span className="hero__slide9-title-text">{h.slide9.titleText}</span> : null}
+              <button
+                type="button"
+                className={`hero__slide8-title-trigger${infoTriggerLangClass}`}
+                aria-label={h.aria.openScene9Details}
+                aria-expanded={isScene9BOpen ? 'true' : 'false'}
+                onClick={openScene9B}
+              >
+                <span className="hero__info-trigger-icon" aria-hidden="true">i</span>
+                <span className="hero__info-trigger-label" aria-hidden="true">{readMoreLabel}</span>
+              </button>
+            </h2>
+          )}
+
+          {(h.slide9.paragraphLine1Highlight || h.slide9.paragraphLine1AfterHighlight || h.slide9.paragraphLine2) && (
+            <p
+              className="hero__slide9-paragraph hero__slide9-text-box"
+              style={{
+                ...toPercentPosition({ x: scene9SharedX, y: SCENE9_TEXT_LAYOUT.paragraph.y }),
+                width: `${SCENE9_TEXT_LAYOUT.paragraph.widthPercent}%`,
+                fontSize: `${SCENE9_TEXT_LAYOUT.paragraph.fontSizeCqw}cqw`,
+                padding: `${SCENE9_TEXT_LAYOUT.paragraph.paddingCqw}cqw`
+              }}
+            >
+              {(h.slide9.paragraphLine1Highlight || h.slide9.paragraphLine1AfterHighlight) ? (
+                <span className="hero__slide9-paragraph-line">
+                  {h.slide9.paragraphLine1Highlight ? <span className="hero__slide9-highlight">{h.slide9.paragraphLine1Highlight}</span> : null}
+                  {h.slide9.paragraphLine1AfterHighlight ?? ''}
+                </span>
+              ) : null}
+              {h.slide9.paragraphLine2 ? <span className="hero__slide9-paragraph-line">{h.slide9.paragraphLine2}</span> : null}
+            </p>
+          )}
+
+          {(h.slide9.awardLine1 || h.slide9.awardLine2) && (
+            <p
+              className="hero__slide9-award hero__slide9-text-box"
+              style={{
+                ...toPercentPosition({ x: scene9SharedX, y: scene9AwardY }),
+                width: `${SCENE9_TEXT_LAYOUT.award.widthPercent}%`,
+                fontSize: `${SCENE9_TEXT_LAYOUT.award.fontSizeCqw}cqw`,
+                padding: `${SCENE9_TEXT_LAYOUT.award.paddingCqw}cqw`
+              }}
+            >
+              {h.slide9.awardLine1 ? <span className="hero__slide9-award-line">{h.slide9.awardLine1}</span> : null}
+              {h.slide9.awardLine2 ? <span className="hero__slide9-award-line">{h.slide9.awardLine2}</span> : null}
+            </p>
+          )}
+        </div>
+      )
+    }
+
+    const creditSlide = h.slide18 ?? h.slide17
+
     if (isCreditsImage) {
       return (
-        <div className="hero__overlay-content hero__overlay-content--slide17">
+        <div className="hero__overlay-content hero__overlay-content--slide17 hero__overlay-content--slide18">
           <div className="hero__slide17-credit hero__slide17-credit--design">
             <p className="hero__slide17-credit-line hero__slide17-credit-line--design">
-              {h.slide17.designedBy}
+              {creditSlide.designedBy}
             </p>
             <span className="hero__slide17-particles hero__slide17-particles--design" aria-hidden="true">
               <span className="hero__slide17-sparkle hero__slide17-sparkle--one">✦</span>
@@ -872,7 +978,7 @@ function Hero({ t, lang }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {h.slide17.websiteBy}
+              {creditSlide.websiteBy}
             </a>
             <span className="hero__slide17-particles hero__slide17-particles--website" aria-hidden="true">
               <span className="hero__slide17-digital-particle hero__slide17-digital-particle--one">0</span>
@@ -890,7 +996,7 @@ function Hero({ t, lang }) {
             </span>
           </div>
           <p className="hero__slide17-credit-line hero__slide17-credit-line--copyright">
-            {h.slide17.copyright}
+            {creditSlide.copyright}
           </p>
         </div>
       )
@@ -900,7 +1006,7 @@ function Hero({ t, lang }) {
   }
 
   const renderScene = (imageNumber, options = {}) => {
-    const { customImageSrc = null, customSlideLabel = null, hideOverlay = false, hideSlideIndex = false } = options
+    const { customImageSrc = null, hideOverlay = false } = options
     const shouldUseSvgImage = imageNumber === 1 || imageNumber >= 3
     const firstSceneImageSrc = lang === 'es'
       ? `${import.meta.env.BASE_URL}images/1es.svg`
@@ -943,12 +1049,13 @@ function Hero({ t, lang }) {
     const compositionForegroundSvgSrc = imageNumber === 3
       ? thirdSceneImageSrc
       : `${import.meta.env.BASE_URL}images/${imageNumber}.svg`
-    const isVisibleOverlay = (imageNumber === 1 || imageNumber === 2 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber === 7 || imageNumber === 8 || imageNumber === 16 || imageNumber === 17) && !hideOverlay
+    const isVisibleOverlay = (imageNumber === 1 || imageNumber === 2 || imageNumber === 3 || imageNumber === 5 || imageNumber === 6 || imageNumber === 7 || imageNumber === 8 || imageNumber === 9 || imageNumber === 16 || imageNumber === 17) && !hideOverlay
     const isCompositionFixScene = imageNumber === 2 || imageNumber === 3
     const isSlide5Scene = imageNumber === 5
     const isSlide6Scene = imageNumber === 6
     const isSlide7Scene = imageNumber === 7
     const isSlide8Scene = imageNumber === 8
+    const isSlide9Image = imageNumber === 9
     const isFirstScene = imageNumber === 1
     const sceneForegroundSrc = isCompositionFixScene ? compositionForegroundSvgSrc : imageSrc
     const sceneForegroundSrcCandidates = buildCaseAgnosticSvgCandidates(sceneForegroundSrc)
@@ -956,13 +1063,9 @@ function Hero({ t, lang }) {
 
     return (
       <div
-        className={`hero__image${isFirstScene ? ' hero__image--svg-transparent' : ''}${isCompositionFixScene ? ' hero__image--composition-fix' : ''}${isSlide5Scene ? ' hero__image--slide5-responsive' : ''}${isSlide6Scene ? ' hero__image--slide6-responsive' : ''}${isSlide7Scene ? ' hero__image--slide7-responsive' : ''}${isSlide8Scene ? ' hero__image--slide8-responsive' : ''}`}
+        className={`hero__image${isFirstScene ? ' hero__image--svg-transparent' : ''}${isCompositionFixScene ? ' hero__image--composition-fix' : ''}${isSlide5Scene ? ' hero__image--slide5-responsive' : ''}${isSlide6Scene ? ' hero__image--slide6-responsive' : ''}${isSlide7Scene ? ' hero__image--slide7-responsive' : ''}${isSlide8Scene ? ' hero__image--slide8-responsive' : ''}${isSlide9Image ? ' hero__image--slide9-responsive' : ''}`}
         key={`scene-${imageNumber}`}
       >
-        {!hideSlideIndex && (
-          <span className="hero__slide-index" aria-hidden="true">{formatTemplate(h.templates.slideIndex, { label: customSlideLabel ?? imageNumber })}</span>
-        )}
-
         <img
           className={`hero__image-layer${isCompositionFixScene ? ' hero__image-layer--composition-foreground' : ''}`}
           src={initialSceneForegroundSrc}
@@ -1037,9 +1140,7 @@ function Hero({ t, lang }) {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/5bes.svg`
                       : `${import.meta.env.BASE_URL}images/5B.svg`,
-                    customSlideLabel: '5B',
-                    hideOverlay: true,
-                    hideSlideIndex: true
+                    hideOverlay: true
                   })}
                 </div>
               </div>
@@ -1087,9 +1188,7 @@ function Hero({ t, lang }) {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/6bes.svg`
                       : `${import.meta.env.BASE_URL}images/6B.svg`,
-                    customSlideLabel: '6B',
-                    hideOverlay: true,
-                    hideSlideIndex: true
+                    hideOverlay: true
                   })}
                 </div>
               </div>
@@ -1137,9 +1236,7 @@ function Hero({ t, lang }) {
                     customImageSrc: lang === 'es'
                       ? `${import.meta.env.BASE_URL}images/7bes.svg`
                       : `${import.meta.env.BASE_URL}images/7B.svg`,
-                    customSlideLabel: '7B',
-                    hideOverlay: true,
-                    hideSlideIndex: true
+                    hideOverlay: true
                   })}
                 </div>
               </div>
@@ -1185,9 +1282,51 @@ function Hero({ t, lang }) {
                 customImageSrc: lang === 'es'
                   ? `${import.meta.env.BASE_URL}images/8bes.svg`
                   : `${import.meta.env.BASE_URL}images/8B.svg`,
-                customSlideLabel: '8B',
-                hideOverlay: true,
-                hideSlideIndex: true
+                hideOverlay: true
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderScene9Branch = () => {
+    const isOpen = isScene9BOpen
+    const isVisible = isScene9BMounted || isScene9BClosing
+
+    if (!isVisible) {
+      return null
+    }
+
+    return (
+      <div className={`hero__scene8b-modal${isOpen ? ' is-open' : ' is-closing'}`} aria-hidden={isOpen ? 'false' : 'true'}>
+        <button
+          type="button"
+          className="hero__scene8b-dim"
+          aria-label={h.aria.closeScene9Details}
+          onClick={closeScene9B}
+        />
+
+        <div
+          className="hero__scene8b-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label={h.aria.scene9DetailsDialog}
+        >
+          <div className="hero__scene8b-panel-inner">
+            <div
+              className="hero__scene8b-backdrop"
+              aria-hidden="true"
+              style={{ backgroundImage: `url(${sharedCompositionBackgroundSrc})` }}
+            />
+
+            <div className="hero__scene8b-canvas">
+              {renderScene(9, {
+                customImageSrc: lang === 'es'
+                  ? `${import.meta.env.BASE_URL}images/toycyclebes.svg`
+                  : `${import.meta.env.BASE_URL}images/toycycleben.svg`,
+                hideOverlay: true
               })}
             </div>
           </div>
@@ -1231,24 +1370,10 @@ function Hero({ t, lang }) {
       1
     )
   const underSceneOffsetVh = FIRST_TRANSITION_UNDER_REVEAL_OFFSET_VH * (1 - underRevealProgress)
-  const firstTransitionProgressPercent = Math.round(firstTransitionProgress * 100)
-  const horizontalTransitionProgressPercent = Math.round(horizontalTransitionProgress * 100)
-  const horizontalTransition8To9ProgressPercent = Math.round(horizontalTransition8To9Progress * 100)
-  const scene15To16TransitionProgressPercent = Math.round(scene15To16TransitionProgress * 100)
-
   return (
     <section className="hero" aria-label={h.aria.composition}>
       {/* Shared backdrop: one fixed background for the full hero so scenes 2+ move over the same stationary layer. */}
       <div className="hero__scene-fixed-background" aria-hidden="true" style={sharedBackgroundStyle} />
-
-      {/* Temporary debug counters for tuning hero transition timing. */}
-      <div className="hero__progress-counter" aria-live="polite">
-        <p className="hero__progress-counter-line">{h.debug.y} {debugScrollY}px</p>
-        <p className="hero__progress-counter-line">{h.debug.oneToTwo} {firstTransitionProgressPercent}%</p>
-        <p className="hero__progress-counter-line">{h.debug.threeToFour} {horizontalTransitionProgressPercent}%</p>
-        <p className="hero__progress-counter-line">{h.debug.eightToNine} {horizontalTransition8To9ProgressPercent}%</p>
-        <p className="hero__progress-counter-line">{h.debug.fifteenToSixteen} {scene15To16TransitionProgressPercent}%</p>
-      </div>
 
       <section className="hero__paper-transition hero__paper-transition--first" ref={firstTransitionRef} aria-label={h.aria.firstTransition}>
         <span
@@ -1360,6 +1485,8 @@ function Hero({ t, lang }) {
           </div>
         </div>
       </section>
+
+      {renderScene9Branch()}
 
       {Array.from({ length: 5 }, (_, index) => index + 10).map((imageNumber) => renderScene(imageNumber))}
 
